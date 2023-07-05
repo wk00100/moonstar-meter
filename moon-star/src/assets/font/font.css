@@ -1,0 +1,8 @@
+@font-face {
+  font-family: 'TaipeiSans-Regular';
+  src: url('./TaipeiSansTCBeta-Regular.ttf') format('opentype');
+}
+@font-face {
+  font-family: 'TaipeiSans-Bold';
+  src: url('./TaipeiSansTCBeta-Bold.ttf') format('opentype');
+}
