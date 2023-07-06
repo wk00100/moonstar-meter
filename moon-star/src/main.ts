@@ -15,10 +15,16 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
 /* import specific icons */
-import { faFax } from '@fortawesome/free-solid-svg-icons'
+import {
+  faFax,
+  faPhone,
+  faLocationDot,
+  faLink,
+  faEnvelope
+} from '@fortawesome/free-solid-svg-icons'
 
 /* add icons to the library */
-library.add(faFax)
+library.add(faFax, faPhone, faLocationDot, faLink, faEnvelope)
 const app = createApp(App)
 
 app.use(createPinia())
