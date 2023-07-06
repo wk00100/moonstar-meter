@@ -67,9 +67,8 @@ import { RouterLink, RouterView } from 'vue-router'
           class="icon"
         />&ensp;86-769-82882512 &nbsp;&nbsp;
         <font-awesome-icon
-          icon="fa-solid fa-fax"
+          icon="fa-solid fa-print"
           style="color: #ededed"
-          class="icon"
         />&ensp;86-769-82882516<br />
         <font-awesome-icon icon="fa-solid fa-link" style="color: #ededed" class="icon" />&ensp;<a
           href="http://www.moonstar-meter.com/"
