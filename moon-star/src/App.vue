@@ -1,85 +1,82 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
 </script>
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
+    <RouterLink to="/" class="landmark">
+      <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="60" height="60" />
+    </RouterLink>
+    <div class="menu">
       <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
+        <ul>
+          <li><RouterLink to="/about">關於月欣</RouterLink></li>
+          <li><RouterLink to="/products">產品介紹</RouterLink></li>
+          <li><RouterLink to="/contact-us">聯絡我們</RouterLink></li>
+          <li><RouterLink to="/files">檔案下載</RouterLink></li>
+        </ul>
       </nav>
     </div>
   </header>
 
   <RouterView />
+
+  <footer>
+    <p>
+      Address:&nbsp;新北市板橋區信義路163巷11號3樓<br />
+      Tel:&nbsp;886-2-89541027&emsp;
+      <font-awesome-icon icon="fa-solid fa-fax" style="color: #ededed" />&ensp;886-2-89541028<br />
+      Http:&nbsp;//www.moonstar-meter.com<br />
+      Email:&nbsp;msq22489@ms69.hinet.net<br />
+    </p>
+    廣東：東莞市虎門鎮萬科金色里程4棟405 TEL:86-769-82882512 FAX:86-769-82882516
+    http://www.moonstar-meter.com Copyright© 2011-2023 Moonstar Technology Co.,Ltd.
+  </footer>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
+ul {
+  list-style: none;
+}
 header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-nav {
   width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
+  padding: 2rem 12rem 0rem 4rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
 
   nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
+    ul {
+      display: flex;
+      align-items: flex-end;
+      a {
+        font-family: 'TaipeiSans-Bold';
+        padding: 1rem 1rem;
+      }
+    }
   }
+  .menu {
+    height: 4rem;
+    display: flex;
+    flex-grow: 1;
+    justify-content: flex-end;
+    align-items: center;
+    .router-link-active {
+      color: #e0e7ff;
+    }
+  }
+}
+footer {
+  height: 20rem;
+  width: 100%;
+  background-color: #504b4a;
+  p {
+    color: #c0c0bf;
+    font-family: 'TaipeiSans-Regular';
+    font-weight: 500;
+  }
+}
+.landmark:hover {
+  background-color: #00000000;
 }
 </style>
