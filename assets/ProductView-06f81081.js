@@ -1,0 +1,1 @@
+import{p as t}from"./PageTitleItem-ba6bc314.js";import{d as o,g as r,u as a,o as n}from"./index-714ea544.js";const u=o({__name:"ProductView",setup(l){let e="產品介紹";return(p,s)=>(n(),r(t,{title:a(e)},null,8,["title"]))}});export{u as default};
