@@ -36,7 +36,7 @@ import { RouterLink, RouterView } from 'vue-router'
           class="icon"
         />&ensp;886-2-89541027 &nbsp;&nbsp;
         <font-awesome-icon
-          icon="fa-solid fa-fax"
+          icon="fa-solid fa-print"
           style="color: #ededed"
           class="icon"
         />&ensp;886-2-89541028<br />

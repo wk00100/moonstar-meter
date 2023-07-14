@@ -1,6 +1,10 @@
+<script setup lang="ts">
+import pageTitle from '@/components/PageTitleItem.vue'
+let title: string = '關於月欣'
+</script>
 <template>
+  <page-title class="title" :title="title"></page-title>
   <main class="about">
-    <h1>關於月欣</h1>
     <div class="certificate">
       <img alt="certificate" src="@/assets/certificate.jpg" width="300" />
     </div>
@@ -16,13 +20,13 @@
   </main>
 </template>
 
-<style>
+<style scoped lang="scss">
 main {
   padding: 0 4rem;
   display: grid;
   grid-template-columns: 2fr 3fr;
 }
-h1 {
+.title {
   height: 5rem;
   background-color: #d4e6fa;
   display: flex;
