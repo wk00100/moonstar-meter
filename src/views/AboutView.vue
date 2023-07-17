@@ -3,7 +3,7 @@ import pageTitle from '@/components/PageTitleItem.vue'
 let title: string = '關於月欣'
 </script>
 <template>
-  <page-title class="title" :title="title"></page-title>
+  <page-title :title="title"></page-title>
   <main class="about">
     <div class="certificate">
       <img alt="certificate" src="@/assets/certificate.jpg" width="300" />
@@ -26,14 +26,7 @@ main {
   display: grid;
   grid-template-columns: 2fr 3fr;
 }
-.title {
-  height: 5rem;
-  background-color: #d4e6fa;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  grid-column: 1 / span 2;
-}
+
 .certificate {
   margin: 2rem 0;
   display: flex;
