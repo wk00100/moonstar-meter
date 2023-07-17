@@ -1,1 +1,0 @@
-import{d as s,c as _,e,t as a,o,_ as c}from"./index-714ea544.js";const n={class:"background"},p={class:"page-title"},d=s({__name:"PageTitleItem",props:{title:{}},setup(i){return(t,l)=>(o(),_("div",n,[e("div",p,[e("h1",null,a(t.title),1)])]))}});const m=c(d,[["__scopeId","data-v-710d34bd"]]);export{m as p};
