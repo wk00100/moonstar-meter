@@ -16,7 +16,7 @@ defineProps<{
 .background {
   height: 9rem;
   background-color: #c0c0bf80;
-  background-image: url(@/assets/image/page-title.jpg);
+  background-image: url(@/assets/images/page-title.jpg);
   background-size: cover;
 }
 .page-title {
