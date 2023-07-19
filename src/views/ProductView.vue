@@ -1,10 +1,36 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import pageTitle from '@/components/PageTitleItem.vue'
 import sideBar from '@/components/sidebar/SideBarItem.vue'
+import productList from '@/components/ProductList.vue'
 let title: string = '產品介紹'
+const category = ref('counter')
 </script>
 <template>
   <page-title :title="title"></page-title>
-  <side-bar></side-bar>
+  <div class="container">
+    <aside>
+      <side-bar
+        @switch="
+          (newCategory) => {
+            category = newCategory
+          }
+        "
+      ></side-bar>
+    </aside>
+    <main>
+      <product-list :category="category"></product-list>
+    </main>
+  </div>
 </template>
-<style></style>
+<style scoped lang="scss">
+.container {
+  display: flex;
+}
+aside {
+  width: 15vw;
+}
+main {
+  width: 85vw;
+}
+</style>

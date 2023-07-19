@@ -3,8 +3,14 @@
     <div class="subtitle">
       <h2>{{ prop.category }}</h2>
     </div>
-    <div class="product-container" v-for="product in matchProducts" :key="product.id">
-      {{ product }}
+    <div class="product-container">
+      <div class="product" v-for="product in matchProducts" :key="product.id">
+        <p>
+          <b>{{ product.name }}</b>
+          <br />
+          {{ product.id }}
+        </p>
+      </div>
     </div>
   </div>
 </template>
@@ -48,3 +54,24 @@ interface IProduct {
   img: string
 }
 </script>
+
+<style scoped lang="scss">
+.wrapper {
+  padding: 0 3rem;
+}
+.subtitle {
+  margin: 0.5rem;
+  h2 {
+    padding-left: 0.5rem;
+  }
+}
+.product-container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  .product {
+    //display: flex;
+    margin: 0.5rem 1rem;
+  }
+}
+</style>

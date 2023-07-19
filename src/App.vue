@@ -96,8 +96,8 @@ ul {
 }
 header {
   width: 100%;
-  height: 15vh;
-  padding: 2rem 12rem 0rem 4rem;
+  height: 4.5rem;
+  padding: 0.5rem 12rem 0.5rem 4rem;
   display: flex;
   justify-content: center;
   align-items: flex-start;
