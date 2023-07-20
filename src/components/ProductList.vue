@@ -5,11 +5,16 @@
     </div>
     <div class="product-container">
       <div class="product" v-for="product in matchProducts" :key="product.id">
-        <p>
-          <b>{{ product.name }}</b>
-          <br />
-          {{ product.id }}
-        </p>
+        <div class="product-img">
+          <img :alt="product.id" :src="product.img" />
+        </div>
+        <div class="product-name">
+          <p>
+            {{ product.id }}
+            <br />
+            <b>{{ product.name }}</b>
+          </p>
+        </div>
       </div>
     </div>
   </div>
@@ -27,19 +32,43 @@ watch(
 )
 
 const prop = defineProps<{ category: string }>() // pure type annotation
-
+const imgPath = 'src/assets/images/products/'
 const products: IProduct[] = [
   {
     id: 'MC-40K/60K',
     name: '四/六位元數顯示型 計數器/長度表',
     category: 'counter',
-    img: '@/assets/images/products/#'
+    img: imgPath + 'type_1.jpg'
   },
   {
     id: 'MC-61K/62KA/62KB',
     name: '六位一段/二段設定型計數器',
     category: 'counter',
-    img: '@/assets/images/products/#'
+    img: imgPath + 'type_3.jpg'
+  },
+  {
+    id: 'MRL-60K-V-S',
+    name: '轉速表/線速度表/(附)類比輸出',
+    category: 'counter',
+    img: imgPath + 'type_2.jpg'
+  },
+  {
+    id: 'MS-1 & MS-2',
+    name: '31/2,41/2數位式類比表(DCV/ACV輸入型轉速表)',
+    category: 'counter',
+    img: imgPath + 'type_4.jpg'
+  },
+  {
+    id: 'MS-3',
+    name: '四位數微電腦類比表(DCV/ACV輸入型轉速表)',
+    category: 'counter',
+    img: imgPath + 'type_1.jpg'
+  },
+  {
+    id: 'MRL-40K-S',
+    name: '轉速表/線速度表',
+    category: 'tachometer-line-speed',
+    img: imgPath + 'type_2.jpg'
   }
 ]
 const matchProducts = ref<IProduct[]>([])
@@ -57,6 +86,7 @@ interface IProduct {
 
 <style scoped lang="scss">
 .wrapper {
+  height: 100%;
   padding: 0 3rem;
 }
 .subtitle {
@@ -67,11 +97,24 @@ interface IProduct {
 }
 .product-container {
   width: 100%;
+  max-height: 34rem;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   .product {
-    //display: flex;
+    // display: flex;
+    max-width: 100%;
     margin: 0.5rem 1rem;
+    .product-img {
+      width: 100%;
+      height: 10rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 2px solid #647584;
+      img {
+        max-width: 80%;
+      }
+    }
   }
 }
 </style>

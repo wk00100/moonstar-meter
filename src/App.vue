@@ -7,20 +7,18 @@ import { RouterLink, RouterView } from 'vue-router'
     <RouterLink to="/" class="landmark">
       <img alt="MOONSTAR" class="logo" src="@/assets/logo.svg" width="70" />
     </RouterLink>
-    <div class="menu">
-      <nav>
-        <ul>
-          <li><RouterLink to="/about">關於月欣</RouterLink></li>
-          <li><RouterLink to="/products">產品介紹</RouterLink></li>
-          <li><RouterLink to="/contact-us">聯絡我們</RouterLink></li>
-          <li><RouterLink to="/files">檔案下載</RouterLink></li>
-        </ul>
-      </nav>
-    </div>
+    <nav>
+      <ul>
+        <li><RouterLink to="/about">關於月欣</RouterLink></li>
+        <li><RouterLink to="/products">產品介紹</RouterLink></li>
+        <li><RouterLink to="/contact-us">聯絡我們</RouterLink></li>
+        <li><RouterLink to="/files">檔案下載</RouterLink></li>
+      </ul>
+    </nav>
   </header>
-  <div class="wrapper">
+  <main>
     <RouterView />
-  </div>
+  </main>
   <footer>
     <div class="company">
       <h3>台灣</h3>
@@ -90,39 +88,49 @@ ul {
 .icon {
   width: 1.5rem;
 }
-.wrapper {
+main {
   width: 100%;
-  min-height: 60vh;
+  min-height: 62vh;
 }
 header {
   width: 100%;
-  height: 4.5rem;
+  min-height: 13vh;
   padding: 0.5rem 12rem 0.5rem 4rem;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  .landmark {
+    display: flex;
+    &:hover {
+      background-color: #00000000;
+    }
+  }
 
   nav {
     ul {
       display: flex;
-      align-items: flex-end;
-      a {
-        font-family: 'TaipeiSans-Bold';
-        padding: 1rem 1rem;
+      align-self: stretch;
+      li {
+        display: flex;
+        align-self: stretch;
+        align-items: flex-end;
+        a {
+          font-family: 'TaipeiSans-Bold';
+          padding: 1rem 1rem;
+        }
       }
     }
-  }
-  .menu {
-    height: 4rem;
     display: flex;
     flex-grow: 1;
     justify-content: flex-end;
-    align-items: center;
+    align-items: flex-end;
+    align-self: stretch;
+
     .router-link-active {
       color: #e0e7ff;
     }
   }
 }
+
 footer {
   min-height: 25vh;
   width: 100%;
@@ -154,8 +162,5 @@ footer {
       justify-content: center;
     }
   }
-}
-.landmark:hover {
-  background-color: #00000000;
 }
 </style>

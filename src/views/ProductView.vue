@@ -11,6 +11,7 @@ const category = ref('counter')
   <div class="container">
     <aside>
       <side-bar
+        :current-category="category"
         @switch="
           (newCategory) => {
             category = newCategory
@@ -29,6 +30,8 @@ const category = ref('counter')
 }
 aside {
   width: 15vw;
+  margin: 0.5rem 1rem 2rem 2rem;
+  // margin-bottom: 2rem;
 }
 main {
   width: 85vw;
