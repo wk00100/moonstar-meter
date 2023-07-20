@@ -6,6 +6,10 @@ import { RouterLink, RouterView } from 'vue-router'
   <header>
     <RouterLink to="/" class="landmark">
       <img alt="MOONSTAR" class="logo" src="@/assets/logo.svg" width="70" />
+      <div class="name">
+        <h2>月欣科技有限公司</h2>
+        <p>Moonstar Technology Co.,Ltd.</p>
+      </div>
     </RouterLink>
     <nav>
       <ul>
@@ -102,6 +106,14 @@ header {
     display: flex;
     &:hover {
       background-color: #00000000;
+    }
+    .name {
+      padding-left: 0.8rem;
+      color: rgb(44, 42, 42);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: baseline;
     }
   }
 
