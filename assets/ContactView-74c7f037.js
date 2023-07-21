@@ -1,0 +1,1 @@
+import{p as t}from"./PageTitleItem-141dbad1.js";import{d as a,c as s,a as o,u as n,f as l,F as r,o as c}from"./index-d4dddac7.js";const f=a({__name:"ContactView",setup(i){let e="聯絡我們";return(p,m)=>(c(),s(r,null,[o(t,{class:"title",title:n(e)},null,8,["title"]),l("This is Contact Us Page.")],64))}});export{f as default};
