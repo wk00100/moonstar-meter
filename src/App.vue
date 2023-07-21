@@ -16,7 +16,9 @@ import { RouterLink, RouterView } from 'vue-router'
         <li><RouterLink to="/about">關於月欣</RouterLink></li>
         <li><RouterLink to="/products">產品介紹</RouterLink></li>
         <li><RouterLink to="/contact-us">聯絡我們</RouterLink></li>
-        <li><RouterLink to="/files">檔案下載</RouterLink></li>
+        <li>
+          <RouterLink to="/files" style="pointer-events: none; color: #c0c0bf">檔案下載</RouterLink>
+        </li>
       </ul>
     </nav>
   </header>
