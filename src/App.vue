@@ -92,13 +92,9 @@ ul {
 .icon {
   width: 1.5rem;
 }
-main {
-  width: 100%;
-  min-height: 62vh;
-}
 header {
   width: 100%;
-  min-height: 13vh;
+  min-height: 5rem;
   padding: 0.5rem 12rem 0.5rem 4rem;
   display: flex;
   justify-content: center;
@@ -142,9 +138,13 @@ header {
     }
   }
 }
+main {
+  width: 100%;
+  min-height: 22rem;
+}
 
 footer {
-  min-height: 25vh;
+  min-height: calc(100vh - 5rem - 22rem);
   width: 100%;
   padding: 1rem 2rem 0 2rem;
   background-color: #504b4a;
@@ -164,6 +164,7 @@ footer {
   .company {
     display: flex;
     justify-content: center;
+    max-height: 6rem;
   }
 
   .copyright {
