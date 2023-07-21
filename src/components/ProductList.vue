@@ -6,7 +6,7 @@
     <div class="product-container">
       <div class="product" v-for="product in matchProducts" :key="product.id">
         <div class="product-img">
-          <img :alt="product.id" :src="'static/img/products/' + product.img" />
+          <img :alt="product.id" :src="getImageUrl(product.img)" />
         </div>
         <div class="product-name">
           <p>
@@ -32,49 +32,55 @@ watch(
 )
 
 const prop = defineProps<{ category: string }>() // pure type annotation
+
+const matchProducts = ref<IProduct[]>([])
+
+function getImageUrl(name: string) {
+  return new URL(`/src/assets/images/products/${name}.jpg`, import.meta.url).href
+}
+
+function updateMatchProducts(categoryName: string): void {
+  matchProducts.value = products.filter((products) => products.category === categoryName)
+  return
+}
 const products: IProduct[] = [
   {
     id: 'MC-40K/60K',
     name: '四/六位元數顯示型 計數器/長度表',
     category: 'counter',
-    img: 'type_1.jpg'
+    img: 'type_1'
   },
   {
     id: 'MC-61K/62KA/62KB',
     name: '六位一段/二段設定型計數器',
     category: 'counter',
-    img: 'type_3.jpg'
+    img: 'type_3'
   },
   {
     id: 'MRL-60K-V-S',
     name: '轉速表/線速度表/(附)類比輸出',
     category: 'counter',
-    img: 'type_2.jpg'
+    img: 'type_2'
   },
   {
     id: 'MS-1 & MS-2',
     name: '31/2,41/2數位式類比表(DCV/ACV輸入型轉速表)',
     category: 'counter',
-    img: 'type_4.jpg'
+    img: 'type_4'
   },
   {
     id: 'MS-3',
     name: '四位數微電腦類比表(DCV/ACV輸入型轉速表)',
     category: 'counter',
-    img: 'type_1.jpg'
+    img: 'type_1'
   },
   {
     id: 'MRL-40K-S',
     name: '轉速表/線速度表',
     category: 'tachometer-line-speed',
-    img: 'type_2.jpg'
+    img: 'type_2'
   }
 ]
-const matchProducts = ref<IProduct[]>([])
-function updateMatchProducts(categoryName: string): void {
-  matchProducts.value = products.filter((products) => products.category === categoryName)
-  return
-}
 interface IProduct {
   id: string
   name: string

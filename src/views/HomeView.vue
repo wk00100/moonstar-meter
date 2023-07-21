@@ -2,7 +2,7 @@
 import 'vue3-carousel/dist/carousel.css'
 import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
 function getImageUrl(index: number) {
-  return new URL(`/src/assets/images/banner${index}.jpg`, import.meta.url).href
+  return new URL(`/src/assets/images/banners/banner_${index}.jpg`, import.meta.url).href
 }
 </script>
 
