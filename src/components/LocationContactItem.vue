@@ -13,7 +13,7 @@
         icon="fa-solid fa-phone"
         style="color: #8c8080"
         class="icon"
-      />&ensp;886-2-89541027 &nbsp;&nbsp;
+      />&ensp;886-2-89541027<br />
       <font-awesome-icon
         icon="fa-solid fa-print"
         style="color: #8c8080"
@@ -45,5 +45,9 @@ $text-theme: #8c8080;
   color: $text-theme;
   padding: 0.5rem 0;
   font-size: 1.2rem;
+}
+p {
+  font-size: medium;
+  line-height: 2.5;
 }
 </style>
