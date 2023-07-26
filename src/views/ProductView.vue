@@ -3,9 +3,12 @@ import { ref } from 'vue'
 import pageTitle from '@/components/PageTitleItem.vue'
 import sideBar from '@/components/sidebar/SideBarItem.vue'
 import productList from '@/components/ProductList.vue'
-import { type ICategory } from '@/types/old/Data'
+import ProductInfoItem from '@/components/ProductInfoItem.vue'
+import { type ICategory, type IProduct } from '@/types/old/Data'
 let title: string = '產品介紹'
 const category = ref<ICategory>({ id: 'AI', name: '' })
+const product = ref<IProduct>()
+const isDisplayInfo = ref<boolean>(false)
 </script>
 <template>
   <page-title :title="title"></page-title>
@@ -16,12 +19,23 @@ const category = ref<ICategory>({ id: 'AI', name: '' })
         @switch="
           (newCategory) => {
             category = newCategory
+            isDisplayInfo = false
           }
         "
       ></side-bar>
     </aside>
     <main>
-      <product-list :category="category"></product-list>
+      <product-list
+        v-if="!isDisplayInfo"
+        :category="category"
+        @display="
+          (info) => {
+            product = info
+            isDisplayInfo = true
+          }
+        "
+      ></product-list>
+      <product-info-item v-else :product-info="product"></product-info-item>
     </main>
   </div>
 </template>
@@ -30,11 +44,12 @@ const category = ref<ICategory>({ id: 'AI', name: '' })
   display: flex;
 }
 aside {
-  width: 15vw;
+  width: 15rem;
   margin: 0.5rem 1rem 2rem 2rem;
   // margin-bottom: 2rem;
 }
 main {
   width: 85vw;
+  height: 100%;
 }
 </style>

@@ -4,7 +4,7 @@
       <h2>{{ prop.category.name }}</h2>
     </div>
     <div class="product-container">
-      <div class="product" v-for="product in matchProducts" :key="product.id">
+      <div class="product" v-for="product in matchProducts" :key="product.id" @click="onDisplayInfo(product)">
         <div class="product-img">
           <img :alt="product.id" :src="getImageUrl(product.img)" />
         </div>
@@ -33,6 +33,7 @@ watch(
 )
 
 const prop = defineProps<{ category: ICategory }>() // pure type annotation
+const emit = defineEmits<{ (e: 'display', product: IProduct): void }>()
 
 const matchProducts = ref<IProduct[]>([])
 
@@ -43,6 +44,10 @@ function getImageUrl(name: string) {
 function updateMatchProducts(typeName: string): void {
   matchProducts.value = products.filter((products) => products.type === typeName)
   return
+}
+
+function onDisplayInfo(product: IProduct) {
+  emit('display', product)
 }
 const products: IProduct[] = [
   {
@@ -173,6 +178,13 @@ const products: IProduct[] = [
       border: 2px solid #647584;
       img {
         max-width: 80%;
+        z-index: 10;
+      }
+      &:hover {
+        z-index: 20;
+        background-color: white;
+        opacity: 0.7;
+        transition: 0.25s;
       }
     }
   }
