@@ -3,8 +3,9 @@ import { ref } from 'vue'
 import pageTitle from '@/components/PageTitleItem.vue'
 import sideBar from '@/components/sidebar/SideBarItem.vue'
 import productList from '@/components/ProductList.vue'
+import { type ICategory } from '@/types/old/Data'
 let title: string = '產品介紹'
-const category = ref('counter')
+const category = ref<ICategory>({ id: 'AI', name: '' })
 </script>
 <template>
   <page-title :title="title"></page-title>

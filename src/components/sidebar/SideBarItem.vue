@@ -17,11 +17,15 @@
   </div>
 </template>
 <script setup lang="ts">
-defineProps<{ currentCategory: string }>()
+import { onMounted } from 'vue'
+import { type ICategory } from '@/types/old/Data'
+const prop = defineProps<{ currentCategory: ICategory }>()
 
-const emit = defineEmits<{ (e: 'switch', newCategory: string): void }>()
+onMounted(() => switchCategory(prop.currentCategory))
+
+const emit = defineEmits<{ (e: 'switch', newCategory: ICategory): void }>()
 function switchCategory(category: ICategory) {
-  emit('switch', category.id)
+  emit('switch', category)
   for (let i = 0; i < categories.length; i++) {
     if (categories[i].id === category.id) {
       categories[i].isActive = true
@@ -30,16 +34,15 @@ function switchCategory(category: ICategory) {
     }
   }
 }
-interface ICategory {
-  id: string
-  name: string
-  isActive: boolean
+interface ISidebarCategory extends ICategory {
+  isActive?: boolean
 }
-const categories: ICategory[] = [
-  { id: 'counter', name: '計數器', isActive: true },
-  { id: 'tachometer-line-speed', name: '線速/轉速表', isActive: false },
-  { id: 'voltage-current-meter', name: '電壓/電流錶', isActive: false },
-  { id: 'ampere-hour-meter', name: '安培小時器', isActive: false },
+const categories: ISidebarCategory[] = [
+  { id: 'AI', name: '類比表', isActive: true },
+  { id: 'C', name: '計數器', isActive: false },
+  { id: 'SI', name: '速度表', isActive: false },
+  { id: 'TC', name: '張力控制器', isActive: false }
+  /**
   { id: '', name: '壓力/流量表', isActive: false },
   { id: '', name: '米輪/編碼器', isActive: false },
   { id: '', name: '液位傳感器', isActive: false },
@@ -50,6 +53,7 @@ const categories: ICategory[] = [
   { id: '', name: '布頭檢知控制器', isActive: false },
   { id: '', name: '比例連動控制器', isActive: false },
   { id: '', name: 'RS485無線傳輸器', isActive: false }
+  */
 ]
 </script>
 <style scoped lang="scss">
@@ -98,3 +102,4 @@ li {
   color: gray;
 }
 </style>
+@/types/old/Category
