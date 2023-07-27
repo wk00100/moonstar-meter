@@ -33,6 +33,6 @@ main {
   justify-content: center;
 }
 article {
-  margin: 2rem 0;
+  margin: 2rem 2rem;
 }
 </style>

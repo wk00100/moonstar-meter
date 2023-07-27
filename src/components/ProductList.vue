@@ -4,7 +4,12 @@
       <h2>{{ prop.category.name }}</h2>
     </div>
     <div class="product-container">
-      <div class="product" v-for="product in matchProducts" :key="product.id" @click="onDisplayInfo(product)">
+      <div
+        class="product"
+        v-for="product in matchProducts"
+        :key="product.id"
+        @click="onDisplayInfo(product)"
+      >
         <div class="product-img">
           <img :alt="product.id" :src="getImageUrl(product.img)" />
         </div>
@@ -65,7 +70,7 @@ const products: IProduct[] = [
   {
     id: 'MV-41K',
     name: '四位數一段設定微電腦類比表',
-    img: 'M40O',
+    img: 'M40_O',
     type: 'AI'
   },
   {

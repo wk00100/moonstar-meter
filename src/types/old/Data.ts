@@ -8,3 +8,8 @@ export interface IProduct {
   img: string
   type: string
 }
+
+export interface IProductInfo extends IProduct {
+  description: string
+  bulletInfo: string[]
+}
