@@ -35,7 +35,11 @@ const isDisplayInfo = ref<boolean>(false)
           }
         "
       ></product-list>
-      <product-info-item v-else :product-info="product"></product-info-item>
+      <product-info-item
+        v-else
+        :product-info="product"
+        @close="() => (isDisplayInfo = false)"
+      ></product-info-item>
     </main>
   </div>
 </template>

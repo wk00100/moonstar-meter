@@ -8,28 +8,41 @@
         <h2 class="name">{{ fakeProduct.id }}<br />{{ fakeProduct.name }}</h2>
         <div class="nav-tab">
           <a class="tab1" href="#feature">產品特色</a>
-          <a class="tab2" href="#files">相關檔案</a>
+          <a class="tab2" href="#file">相關檔案</a>
         </div>
         <p v-html="fakeProduct.description"></p>
       </div>
     </div>
-    <div class="intro">
-      <h4 id="feature">產品特色</h4>
-      <li class="list" v-for="list in fakeProduct.bulletInfo" :key="list" v-html="list"></li>
-      <h4 id="files">相關檔案</h4>
-    </div>
+    <section>
+      <h3 id="feature">產品特色</h3>
+      <ul class="bullet">
+        <li v-for="list in fakeProduct.bulletInfo" :key="list" v-html="list"></li>
+      </ul>
+      <hr />
+      <h3 id="file">相關檔案</h3>
+      <ul class="bullet">
+        <li v-for="file in fakeProduct.fileList" :key="file.link">
+          <a class="" :href="file.link" target="_blank">{{ file.name }}</a>
+        </li>
+      </ul>
+    </section>
     <button class="btn" type="button" @click="onBack()">回上頁</button>
   </div>
 </template>
 <script lang="ts" setup>
 import { ref, onMounted } from 'vue'
 import { type IProduct, type IProductInfo } from '@/types/old/Data'
+import router from '@/router'
 const props = defineProps<{ productInfo?: IProduct }>()
+const emit = defineEmits<{ (e: 'close'): void }>()
 const product = ref<IProduct>(props.productInfo!) // never undefined
 onMounted(() => {
   console.log(props.productInfo)
+  window.scrollTo(0, 0)
 })
-function onBack() {}
+function onBack() {
+  emit('close')
+}
 
 let fakeProduct: IProductInfo = {
   id: 'MS-1-V-S',
@@ -38,7 +51,13 @@ let fakeProduct: IProductInfo = {
   type: 'AI',
   description:
     '若需調整出場值（超過15%），輸入電壓時請先調整<b>倍率粗調開關（SW1）</b>，再調整<b>倍率微調</b>（SPAN）。',
-  bulletInfo: ['111', '222', '333']
+  bulletInfo: ['111', '222', '333'],
+  fileList: [
+    {
+      name: 'MV-1型錄',
+      link: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ&pp=ygUXbmV2ZXIgZ29ubmEgZ2l2ZSB5b3UgdXA%3D'
+    }
+  ]
   /** specifation info 
   externalDimension: '48*96(mm) （Mounting flush dimension 45*92(mm)）',
   fullScale: '0-1999',
@@ -56,7 +75,7 @@ function getImageUrl(name?: string) {
 <style scoped lang="scss">
 h3 {
   // font-size: 1.5em;
-  padding: 0.3rem 0;
+  padding: 0.5rem 0;
 }
 .wrapper {
   margin: 2rem;
@@ -96,6 +115,15 @@ h3 {
   }
   .tab2 {
     margin-left: 0.5rem;
+  }
+}
+
+.bullet {
+  list-style-type: disc;
+  list-style: inside;
+  margin-bottom: 1rem;
+  li::marker {
+    color: #c0c0bf;
   }
 }
 </style>
