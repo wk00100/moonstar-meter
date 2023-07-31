@@ -34,6 +34,21 @@ a,
   color: rgb(0, 101, 189);
   transition: 0.4s;
 }
+.btn {
+  font-size: larger;
+  border-radius: 15px;
+  border: 0;
+  cursor: pointer;
+  width: 7rem;
+  height: 2.2rem;
+  font-weight: bolder;
+  background-color: whitesmoke;
+  &:hover {
+    color: white;
+    background-color: #082b49;
+    transition: 0.3s;
+  }
+}
 
 @media (hover: hover) {
   a:hover {

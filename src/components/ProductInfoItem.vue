@@ -2,73 +2,75 @@
   <div class="wrapper">
     <div class="info">
       <div class="image">
-        <img :src="getImageUrl(fakeProduct.img)" />
+        <img :src="getImageUrl(currentProduct.img)" />
       </div>
       <div class="summary">
-        <h2 class="name">{{ fakeProduct.id }}<br />{{ fakeProduct.name }}</h2>
+        <h2 class="name">{{ currentProduct.id }}<br />{{ currentProduct.name }}</h2>
         <div class="nav-tab">
           <a class="tab1" href="#feature">產品特色</a>
           <a class="tab2" href="#file">相關檔案</a>
         </div>
-        <p v-html="fakeProduct.description"></p>
+        <p v-html="currentProduct.description"></p>
       </div>
     </div>
     <section>
       <h3 id="feature">產品特色</h3>
       <ul class="bullet">
-        <li v-for="list in fakeProduct.bulletInfo" :key="list" v-html="list"></li>
+        <li v-for="list in currentProduct.bulletInfo" :key="list" v-html="list"></li>
       </ul>
       <hr />
       <h3 id="file">相關檔案</h3>
       <ul class="bullet">
-        <li v-for="file in fakeProduct.fileList" :key="file.link">
+        <li v-for="file in currentProduct.fileList" :key="file.link">
           <a class="" :href="file.link" target="_blank">{{ file.name }}</a>
         </li>
       </ul>
     </section>
-    <button class="btn" type="button" @click="goBack()">回上頁</button>
+    <button class="btn" type="button" @click="goBack()">＜ 回上頁</button>
   </div>
 </template>
 <script lang="ts" setup>
-import { onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
 import { type IProduct, type IProductInfo } from '@/types/old/Data'
 import router from '@/router'
-const props = defineProps<{ productInfo?: IProduct }>()
-let product!: IProductInfo
-onMounted(() => {
-  console.log(props.productInfo)
+const props = defineProps<{ productInfo: IProduct }>()
+let ProductData: IProductInfo[]
+const emptyProduct = {
+  // empty interface object for initialization
+  id: '',
+  name: '',
+  img: '',
+  type: '',
+  description: '',
+  bulletInfo: [],
+  fileList: []
+}
+const currentProduct = ref<IProductInfo>(emptyProduct)
+
+onMounted(async () => {
+  const response = await fetch('/data/product_info.json') // get json response of all products
+  ProductData = await response.json() // change json to object
+  getProductInfo(props.productInfo.id) // find specific product to display
   window.scrollTo(0, 0)
+  console.log(props.productInfo)
 })
+
+function getProductInfo(id: string) {
+  for (let i = 0; i < ProductData.length; i++) {
+    if (ProductData[i].id === id) {
+      currentProduct.value = ProductData[i]
+      break
+    }
+  }
+}
 function goBack() {
+  // back to product list page
   router.push('/products')
 }
 
-let fakeProduct: IProductInfo = {
-  id: 'MS-1-V-S',
-  name: '3½ 數位式類比表',
-  img: 'M40',
-  type: 'AI',
-  description:
-    '若需調整出場值（超過15%），輸入電壓時請先調整<b>倍率粗調開關（SW1）</b>，再調整<b>倍率微調</b>（SPAN）。',
-  bulletInfo: ['111', '222', '333'],
-  fileList: [
-    {
-      name: 'MV-1型錄',
-      link: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ&pp=ygUXbmV2ZXIgZ29ubmEgZ2l2ZSB5b3UgdXA%3D'
-    }
-  ]
-  /** specifation info 
-  externalDimension: '48*96(mm) （Mounting flush dimension 45*92(mm)）',
-  fullScale: '0-1999',
-  overloadIndication: '1或-1',
-  characterHeight: '0.8"(20.43mm)',
-  accuracy: '0.10%',
-  powerVoltage: '',
-  samplingTime: '',*/
-}
-function getImageUrl(name?: string) {
+function getImageUrl(name?: string): string | undefined {
   if (name) return new URL(`/src/assets/images/products/${name}.jpg`, import.meta.url).href
-  else return ''
+  else return undefined
 }
 </script>
 <style scoped lang="scss">
@@ -85,7 +87,7 @@ h3 {
   display: flex;
   margin-right: 1.5rem;
 
-  max-width: 20rem;
+  width: 20rem;
   height: 15rem;
   img {
     width: 80%;
@@ -109,6 +111,11 @@ h3 {
   }
 }
 .nav-tab {
+  display: flex;
+  a {
+    display: flex;
+    align-items: center;
+  }
   .tab1 {
     margin-right: 0.5rem;
   }

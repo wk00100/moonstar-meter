@@ -19,11 +19,12 @@ import {
   faLocationDot,
   faLink,
   faEnvelope,
-  faPrint
+  faPrint,
+  faSortDown
 } from '@fortawesome/free-solid-svg-icons'
 
 /* add icons to the library */
-library.add(faPhone, faLocationDot, faLink, faEnvelope, faPrint)
+library.add(faPhone, faLocationDot, faLink, faEnvelope, faPrint, faSortDown)
 const app = createApp(App)
 
 app.use(createPinia())
