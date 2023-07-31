@@ -26,22 +26,21 @@
         </li>
       </ul>
     </section>
-    <button class="btn" type="button" @click="onBack()">回上頁</button>
+    <button class="btn" type="button" @click="goBack()">回上頁</button>
   </div>
 </template>
 <script lang="ts" setup>
-import { ref, onMounted } from 'vue'
+import { onMounted } from 'vue'
 import { type IProduct, type IProductInfo } from '@/types/old/Data'
 import router from '@/router'
 const props = defineProps<{ productInfo?: IProduct }>()
-const emit = defineEmits<{ (e: 'close'): void }>()
-const product = ref<IProduct>(props.productInfo!) // never undefined
+let product!: IProductInfo
 onMounted(() => {
   console.log(props.productInfo)
   window.scrollTo(0, 0)
 })
-function onBack() {
-  emit('close')
+function goBack() {
+  router.push('/products')
 }
 
 let fakeProduct: IProductInfo = {

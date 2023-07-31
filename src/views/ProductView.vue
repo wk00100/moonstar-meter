@@ -2,13 +2,14 @@
 import { ref } from 'vue'
 import pageTitle from '@/components/PageTitleItem.vue'
 import sideBar from '@/components/sidebar/SideBarItem.vue'
-import productList from '@/components/ProductList.vue'
-import ProductInfoItem from '@/components/ProductInfoItem.vue'
 import { type ICategory, type IProduct } from '@/types/old/Data'
+import router from '@/router'
 let title: string = '產品介紹'
 const category = ref<ICategory>({ id: 'AI', name: '' })
 const product = ref<IProduct>()
-const isDisplayInfo = ref<boolean>(false)
+function displayInfo(id: string) {
+  router.push(`products/${id}`)
+}
 </script>
 <template>
   <page-title :title="title"></page-title>
@@ -19,27 +20,23 @@ const isDisplayInfo = ref<boolean>(false)
         @switch="
           (newCategory) => {
             category = newCategory
-            isDisplayInfo = false
+            router.push('/products')
           }
         "
       ></side-bar>
     </aside>
     <main>
-      <product-list
-        v-if="!isDisplayInfo"
+      <RouterView
         :category="category"
         @display="
-          (info) => {
+          (info:IProduct) => {
             product = info
-            isDisplayInfo = true
+            displayInfo(info.id)
+            // isDisplayInfo = true
           }
         "
-      ></product-list>
-      <product-info-item
-        v-else
         :product-info="product"
-        @close="() => (isDisplayInfo = false)"
-      ></product-info-item>
+      ></RouterView>
     </main>
   </div>
 </template>
@@ -53,7 +50,7 @@ aside {
   // margin-bottom: 2rem;
 }
 main {
-  width: 85vw;
+  width: 85rem;
   height: 100%;
 }
 </style>
