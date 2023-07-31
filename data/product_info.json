@@ -1,0 +1,20 @@
+[
+    {
+        "id": "MS-1、MS-2",
+        "name": "3½ 數位式類比表",
+        "img": "M40",
+        "type": "AI",
+        "description": "若需調整出場值（超過15%），輸入電壓時請先調整<b>倍率粗調開關（SW1）</b>，再調整<b>倍率微調</b>（SPAN）。",
+        "bulletInfo": [
+            "111",
+            "222",
+            "333"
+        ],
+        "fileList": [
+            {
+                "name": "MV-1型錄",
+                "link": "https: //www.youtube.com/watch?v=dQw4w9WgXcQ&pp=ygUXbmV2ZXIgZ29ubmEgZ2l2ZSB5b3UgdXA%3D"
+            }
+        ]
+    }
+]
