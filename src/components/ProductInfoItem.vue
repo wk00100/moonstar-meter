@@ -26,7 +26,9 @@
         </li>
       </ul>
     </section>
-    <button class="btn" type="button" @click="goBack()">＜ 回上頁</button>
+    <button class="btn back" type="button" @click="goBack()">
+      <font-awesome-icon icon="angles-left" /> 回上頁
+    </button>
   </div>
 </template>
 <script lang="ts" setup>
@@ -50,6 +52,7 @@ const currentProduct = ref<IProductInfo>(emptyProduct)
 onMounted(async () => {
   const response = await fetch('/data/product_info.json') // get json response of all products
   ProductData = await response.json() // change json to object
+  console.log(ProductData)
   getProductInfo(props.productInfo.id) // find specific product to display
   window.scrollTo(0, 0)
   console.log(props.productInfo)
@@ -130,6 +133,18 @@ h3 {
   margin-bottom: 1rem;
   li::marker {
     color: #c0c0bf;
+  }
+}
+.back {
+  &:hover {
+    color: white;
+    svg {
+      color: white;
+      transition: 0.3s;
+    }
+  }
+  svg {
+    color: black;
   }
 }
 </style>

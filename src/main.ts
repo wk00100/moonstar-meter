@@ -1,5 +1,7 @@
 // import 'bootstrap/dist/css/bootstrap.css'
 // import 'bootstrap/dist/js/bootstrap.js'
+import './assets/font/font.css'
+
 import './assets/main.scss'
 
 import { createApp } from 'vue'
@@ -20,11 +22,12 @@ import {
   faLink,
   faEnvelope,
   faPrint,
-  faSortDown
+  faSortDown,
+  faAnglesLeft
 } from '@fortawesome/free-solid-svg-icons'
 
 /* add icons to the library */
-library.add(faPhone, faLocationDot, faLink, faEnvelope, faPrint, faSortDown)
+library.add(faPhone, faLocationDot, faLink, faEnvelope, faPrint, faSortDown, faAnglesLeft)
 const app = createApp(App)
 
 app.use(createPinia())
