@@ -152,10 +152,11 @@ main {
   padding-top: 5rem;
   width: 100%;
   min-height: 22rem;
+  height: 100%;
 }
 
 footer {
-  min-height: calc(100vh - 5rem - 22rem);
+  min-height: calc(100vh - 26.4rem);
   width: 100%;
   padding: 1rem 2rem 0 2rem;
   background-color: #504b4a;
@@ -180,7 +181,8 @@ footer {
 
   .copyright {
     grid-column: 1 / span 2;
-    margin-top: 1rem;
+    margin-top: 0.5rem;
+    height: 1.5rem;
     p {
       display: flex;
       justify-content: center;
