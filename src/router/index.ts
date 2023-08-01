@@ -35,6 +35,11 @@ const router = createRouter({
       path: '/files',
       name: 'files',
       component: () => import('../views/FileDownloadView.vue')
+    },
+    {
+      // will match everything and put it under `$route.params.pathMatch`
+      path: '/:pathMatch(.*)*',
+      redirect: '/'
     }
   ]
 })
