@@ -2,6 +2,7 @@
 
 Trial website project for Moon Star Technology Co., Ltd.
 Orginal website: http://www.moonstar-meter.com/
+Nowhere: https://delightful-moonbeam-770af7.netlify.app/ (temporary)
 
 ## Recommended IDE Setup
 
