@@ -1,0 +1,22 @@
+[
+  {
+    "id": "AI",
+    "name": "類比表",
+    "isActive": true
+  },
+  {
+    "id": "C",
+    "name": "計數器",
+    "isActive": false
+  },
+  {
+    "id": "SI",
+    "name": "速度表",
+    "isActive": false
+  },
+  {
+    "id": "TC",
+    "name": "張力控制器",
+    "isActive": false
+  }
+]
