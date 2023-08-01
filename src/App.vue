@@ -3,7 +3,7 @@ import { RouterLink, RouterView } from 'vue-router'
 </script>
 
 <template>
-  <header>
+  <header class="shadow">
     <RouterLink to="/" class="landmark">
       <img alt="MOONSTAR" class="logo" src="@/assets/logo.svg" width="70" />
       <div class="name">
@@ -95,11 +95,19 @@ ul {
   width: 1.5rem;
 }
 header {
+  position: fixed;
+  background-color: white;
+  z-index: 100;
   width: 100%;
   min-height: 5rem;
   padding: 0.5rem 12rem 0.5rem 4rem;
   display: flex;
   justify-content: center;
+  &.shadow {
+    -webkit-box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
+    -moz-box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
+    box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
+  }
   .landmark {
     display: flex;
     &:hover {
@@ -141,6 +149,7 @@ header {
   }
 }
 main {
+  padding-top: 5rem;
   width: 100%;
   min-height: 22rem;
 }

@@ -5,7 +5,7 @@ import sideBar from '@/components/sidebar/SideBarItem.vue'
 import { type ICategory, type IProduct } from '@/types/old/Data'
 import router from '@/router'
 let title: string = '產品介紹'
-const category = ref<ICategory>({ id: 'AI', name: '' })
+const category = ref<ICategory>({ id: 'AI', name: '類比表' })
 const product = ref<IProduct>()
 function displayInfo(id: string) {
   router.push(`products/${id}`)

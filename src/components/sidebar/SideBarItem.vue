@@ -17,44 +17,31 @@
   </div>
 </template>
 <script setup lang="ts">
-import { onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
 import { type ICategory } from '@/types/old/Data'
 const prop = defineProps<{ currentCategory: ICategory }>()
-
-onMounted(() => switchCategory(prop.currentCategory))
+const categories = ref<ISidebarCategory[]>([])
+onMounted(async () => {
+  const response = await fetch(`/data/types.json`)
+  categories.value = await response.json()
+  console.log('sidebar load success', categories)
+  switchCategory(prop.currentCategory)
+})
 
 const emit = defineEmits<{ (e: 'switch', newCategory: ICategory): void }>()
 function switchCategory(category: ICategory) {
   emit('switch', category)
-  for (let i = 0; i < categories.length; i++) {
-    if (categories[i].id === category.id) {
-      categories[i].isActive = true
+  for (let i = 0; i < categories.value.length; i++) {
+    if (categories.value[i].id === category.id) {
+      categories.value[i].isActive = true
     } else {
-      categories[i].isActive = false
+      categories.value[i].isActive = false
     }
   }
 }
 interface ISidebarCategory extends ICategory {
   isActive?: boolean
 }
-const categories: ISidebarCategory[] = [
-  { id: 'AI', name: '類比表', isActive: true },
-  { id: 'C', name: '計數器', isActive: false },
-  { id: 'SI', name: '速度表', isActive: false },
-  { id: 'TC', name: '張力控制器', isActive: false }
-  /**
-  { id: '', name: '壓力/流量表', isActive: false },
-  { id: '', name: '米輪/編碼器', isActive: false },
-  { id: '', name: '液位傳感器', isActive: false },
-  { id: '', name: '張力控制器', isActive: false },
-  { id: '', name: '光電開關', isActive: false },
-  { id: '', name: '光學尺(LVDT)', isActive: false },
-  { id: '', name: '薄型直流變壓器(轉換器)', isActive: false },
-  { id: '', name: '布頭檢知控制器', isActive: false },
-  { id: '', name: '比例連動控制器', isActive: false },
-  { id: '', name: 'RS485無線傳輸器', isActive: false }
-  */
-]
 </script>
 <style scoped lang="scss">
 .wrapper {
