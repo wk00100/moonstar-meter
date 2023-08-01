@@ -50,7 +50,7 @@ const emptyProduct = {
 const currentProduct = ref<IProductInfo>(emptyProduct)
 
 onMounted(async () => {
-  const response = await fetch(`${import.meta.env.BASE_URL}/data/product_info.json`) // get json response of all products
+  const response = await fetch(`/data/product_info.json`) // get json response of all products
   ProductData = await response.json() // change json to object
   console.log(ProductData)
   getProductInfo(props.productInfo.id) // find specific product to display

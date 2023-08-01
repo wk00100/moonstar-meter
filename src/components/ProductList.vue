@@ -28,7 +28,11 @@
 <script setup lang="ts">
 import { type ICategory, type IProduct } from '@/types/old/Data'
 import { ref, watch, onMounted } from 'vue'
-onMounted(() => updateMatchProducts(prop.category.id))
+onMounted(async () => {
+  const response = await fetch(`/data/products.json`)
+  products = await response.json()
+  updateMatchProducts(prop.category.id)
+})
 watch(
   () => prop.category.id,
   (newCategory) => {
@@ -41,7 +45,7 @@ const prop = defineProps<{ category: ICategory }>() // pure type annotation
 const emit = defineEmits<{ (e: 'display', product: IProduct): void }>()
 
 const matchProducts = ref<IProduct[]>([])
-
+let products: IProduct[] = []
 function getImageUrl(name: string) {
   return new URL(`/src/assets/images/products/${name}.jpg`, import.meta.url).href
 }
@@ -54,104 +58,6 @@ function updateMatchProducts(typeName: string): void {
 function onDisplayInfo(product: IProduct) {
   emit('display', product)
 }
-const products: IProduct[] = [
-  {
-    id: 'MS-1、MS-2',
-    name: '3½, 4½ 數位式類比表',
-    img: 'M40',
-    type: 'AI'
-  },
-  {
-    id: 'MS-3',
-    name: '四位數微電腦類比表',
-    img: 'M40',
-    type: 'AI'
-  },
-  {
-    id: 'MV-41K',
-    name: '四位數一段設定微電腦類比表',
-    img: 'M40_O',
-    type: 'AI'
-  },
-  {
-    id: 'MC-60K',
-    name: '四/六位元數顯示型 計數器/長度表',
-    img: 'M60',
-    type: 'C'
-  },
-  {
-    id: 'MC-61K、MC-62K',
-    name: '六位數一段二段顯示器',
-    img: 'M66',
-    type: 'C'
-  },
-  {
-    id: 'MC-63K',
-    name: '六位數一段二段顯示器',
-    img: 'M66',
-    type: 'C'
-  },
-  {
-    id: 'MC-6160K',
-    name: '六位數一段設定＋六位總累計計數器',
-    img: 'M66',
-    type: 'C'
-  },
-  {
-    id: 'MC-6161K',
-    name: '六位數一段設定＋總數設定計數器',
-    img: 'M66',
-    type: 'C'
-  },
-  {
-    id: 'MCL-61K',
-    name: '六位數一段設定＋線速表二合一型計數器',
-    img: 'M66',
-    type: 'C'
-  },
-  {
-    id: 'MCL-001',
-    name: '六位數長度、包數、每分鐘平均包數控制器',
-    img: 'M66',
-    type: 'C'
-  },
-  {
-    id: 'MC-6260K',
-    name: '六位數一段設定＋總累計計數器',
-    img: 'M66',
-    type: 'C'
-  },
-  {
-    id: 'MC-6160A',
-    name: '六位數一段設定＋六位總數安培數計數器',
-    img: 'M66',
-    type: 'C'
-  },
-  {
-    id: 'MRL-40K-S',
-    name: '轉速表／線速度表',
-    img: 'M40',
-    type: 'SI'
-  },
-  {
-    id: 'MRL-52KC',
-    name: '五位數二段設定型線速度表（HI，LO）',
-    img: 'M66',
-    type: 'SI'
-  },
-  {
-    id: 'MRL-60K-V-S',
-    name: '轉速表／線速度表（附類比輸出）',
-    img: 'M60',
-    type: 'SI'
-  },
-  {
-    id: 'MT-001',
-    name: '比例式自動張力控制器',
-    img: 'MT',
-    type: 'TC'
-  }
-]
 </script>
 
 <style scoped lang="scss">
