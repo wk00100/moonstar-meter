@@ -1,88 +1,18 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterView } from 'vue-router'
+import HeaderItem from '@/components/semantic/HeaderItem.vue'
+import FooterItem from '@/components/semantic/FooterItem.vue'
 </script>
 
 <template>
   <header class="shadow">
-    <RouterLink to="/" class="landmark">
-      <img alt="MOONSTAR" class="logo" src="@/assets/logo.svg" width="70" />
-      <div class="name">
-        <h2>月欣科技有限公司</h2>
-        <p>Moonstar Technology Co.,Ltd.</p>
-      </div>
-    </RouterLink>
-    <nav>
-      <ul>
-        <li><RouterLink to="/about">關於月欣</RouterLink></li>
-        <li><RouterLink to="/products">產品介紹</RouterLink></li>
-        <li><RouterLink to="/contact-us">聯絡我們</RouterLink></li>
-        <li>
-          <RouterLink to="/files" style="pointer-events: none; color: #c0c0bf">檔案下載</RouterLink>
-        </li>
-      </ul>
-    </nav>
+    <header-item></header-item>
   </header>
   <main>
     <RouterView />
   </main>
   <footer>
-    <div class="company">
-      <h3>台灣</h3>
-      <p style="border-left: 2px solid #c0c0bf; padding-left: 0.5rem">
-        <font-awesome-icon
-          icon="fa-solid fa-location-dot"
-          style="color: #ededed"
-          class="icon"
-        />&ensp;新北市板橋區信義路163巷11號3樓<br />
-        <font-awesome-icon
-          icon="fa-solid fa-phone"
-          style="color: #ededed"
-          class="icon"
-        />&ensp;886-2-89541027 &nbsp;&nbsp;
-        <font-awesome-icon
-          icon="fa-solid fa-print"
-          style="color: #ededed"
-          class="icon"
-        />&ensp;886-2-89541028<br />
-        <font-awesome-icon icon="fa-solid fa-link" style="color: #ededed" class="icon" />&ensp;<a
-          href="http://www.moonstar-meter.com/"
-          target="_blank"
-          style="color: #c0c0bf"
-          >www.moonstar-meter.com</a
-        ><br />
-        <font-awesome-icon
-          icon="fa-solid fa-envelope"
-          style="color: #ededed"
-          class="icon"
-        />&ensp;msq22489@ms69.hinet.net<br />
-      </p>
-    </div>
-    <div class="company">
-      <h3>廣東</h3>
-      <p style="border-left: 2px solid #c0c0bf; padding-left: 0.5rem">
-        <font-awesome-icon
-          icon="fa-solid fa-location-dot"
-          style="color: #ededed"
-          class="icon"
-        />&ensp;東莞市虎門鎮萬科金色里程4棟405<br />
-        <font-awesome-icon
-          icon="fa-solid fa-phone"
-          style="color: #ededed"
-          class="icon"
-        />&ensp;86-769-82882512 &nbsp;&nbsp;
-        <font-awesome-icon
-          icon="fa-solid fa-print"
-          style="color: #ededed"
-        />&ensp;86-769-82882516<br />
-        <font-awesome-icon icon="fa-solid fa-link" style="color: #ededed" class="icon" />&ensp;<a
-          href="http://www.moonstar-meter.com/"
-          target="_blank"
-          style="color: #c0c0bf"
-          >www.moonstar-meter.com</a
-        ><br />
-      </p>
-    </div>
-    <div class="copyright"><p>Copyright© 2023 Moonstar Technology Co.,Ltd.</p></div>
+    <footer-item></footer-item>
   </footer>
 </template>
 
@@ -100,54 +30,43 @@ header {
   z-index: 100;
   width: 100%;
   min-height: 5rem;
-  padding: 0.5rem 12rem 0.5rem 4rem;
+  padding: 0.5rem 4rem;
   display: flex;
-  justify-content: center;
+  max-width: inherit;
+  // justify-content: center;
   &.shadow {
     -webkit-box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
     -moz-box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
     box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
   }
-  .landmark {
-    display: flex;
-    &:hover {
-      background-color: #00000000;
-    }
-    .name {
-      padding-left: 0.8rem;
-      color: rgb(44, 42, 42);
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      align-items: baseline;
-    }
-  }
+}
 
-  nav {
-    ul {
+nav {
+  ul {
+    display: flex;
+    align-self: stretch;
+    li {
       display: flex;
       align-self: stretch;
-      li {
-        display: flex;
-        align-self: stretch;
-        align-items: flex-end;
-        a {
-          font-family: 'TaipeiSans-Bold';
-          padding: 1rem 1rem;
-        }
+      align-items: flex-end;
+      a {
+        font-family: 'TaipeiSans-Bold';
+        padding: 1rem 1rem;
       }
     }
-    display: flex;
-    flex-grow: 1;
-    justify-content: flex-end;
-    align-items: flex-end;
-    align-self: stretch;
+  }
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+  align-items: flex-end;
+  align-self: stretch;
+  // padding-left: 3rem;
 
-    .router-link-active {
-      color: #e0e7ff;
-    }
+  .router-link-active {
+    color: #e0e7ff;
   }
 }
+
 main {
   padding-top: 5rem;
   width: 100%;
@@ -158,35 +77,19 @@ main {
 footer {
   min-height: calc(100vh - 26.4rem);
   width: 100%;
-  padding: 1rem 2rem 0 2rem;
-  background-color: #504b4a;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  h3 {
-    color: #c0c0bf;
-    margin-right: 0.5rem;
-  }
+  // padding: 1rem 2rem 0 2rem;
+}
+@media (max-width: 1199.98px) {
+}
 
-  p {
-    display: inline;
-    color: #c0c0bf;
-    font-family: 'TaipeiSans-Regular';
-    font-weight: 500;
+@media (max-width: 930px) {
+  // hide head nav
+  main {
+    height: auto;
   }
-  .company {
-    display: flex;
-    justify-content: center;
-    max-height: 6rem;
-  }
+}
 
-  .copyright {
-    grid-column: 1 / span 2;
-    margin-top: 0.5rem;
-    height: 1.5rem;
-    p {
-      display: flex;
-      justify-content: center;
-    }
-  }
+@media (max-width: 767.98px) {
+  // mobile mode
 }
 </style>

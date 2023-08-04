@@ -26,23 +26,36 @@ function getImageUrl(index: number) {
 <style scoped lang="scss">
 .wrapper {
   height: 100%;
-}
-h2 {
-  color: #504b4a;
-  font-weight: bold;
-  margin: auto 0;
-  font-size: large;
-  z-index: 100;
-}
-.img-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 20rem;
-  width: 100%;
-  background-color: #e0e7ff;
-  img {
-    width: 100%;
+  h2 {
+    color: #504b4a;
+    font-weight: bold;
+    margin: auto 0;
+    font-size: large;
+    z-index: 100;
   }
+  .img-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 20rem;
+    width: 100%;
+    img {
+      width: 100%;
+    }
+  }
+}
+
+@media (max-width: 1199.98px) {
+}
+
+@media (max-width: 930px) {
+  // hide head nav
+  .wrapper {
+    height: auto;
+  }
+}
+
+@media (max-width: 767.98px) {
+  // mobile mode
 }
 </style>

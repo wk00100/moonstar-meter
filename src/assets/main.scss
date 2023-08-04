@@ -67,3 +67,23 @@ a,
     padding: 0 2rem;
   }*/
 }
+@media (max-width: 1199.98px) {
+  body {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 930px) {
+  // hide head nav
+  body {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 767.98px) {
+  // mobile mode
+  body {
+    display: flex;
+    font-size: 12px;
+  }
+}
