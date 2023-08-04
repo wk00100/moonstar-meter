@@ -29,9 +29,6 @@ header {
   background-color: white;
   z-index: 100;
   width: 100%;
-  min-height: 5rem;
-  padding: 0.5rem 4rem;
-  display: flex;
   max-width: inherit;
   // justify-content: center;
   &.shadow {
@@ -41,41 +38,14 @@ header {
   }
 }
 
-nav {
-  ul {
-    display: flex;
-    align-self: stretch;
-    li {
-      display: flex;
-      align-self: stretch;
-      align-items: flex-end;
-      a {
-        font-family: 'TaipeiSans-Bold';
-        padding: 1rem 1rem;
-      }
-    }
-  }
-  display: flex;
-  flex-grow: 1;
-  justify-content: center;
-  align-items: flex-end;
-  align-self: stretch;
-  // padding-left: 3rem;
-
-  .router-link-active {
-    color: #e0e7ff;
-  }
-}
-
 main {
-  padding-top: 5rem;
+  padding-top: 2.5rem;
   width: 100%;
   min-height: 22rem;
   height: 100%;
 }
 
 footer {
-  min-height: calc(100vh - 26.4rem);
   width: 100%;
   // padding: 1rem 2rem 0 2rem;
 }

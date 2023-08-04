@@ -70,7 +70,7 @@ ul {
   width: 1.5rem;
 }
 .wrapper {
-  min-height: calc(100vh - 26.4rem);
+  min-height: calc(100vh - 23.9rem);
   width: 100%;
   padding: 1rem 2rem 0 2rem;
   background-color: #504b4a;
