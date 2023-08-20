@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper">
+  <div class="wrapper shadow">
     <RouterLink to="/" class="landmark">
       <img alt="MOONSTAR" class="logo" src="@/assets/logo.svg" />
       <div class="name">
@@ -8,13 +8,11 @@
       </div>
     </RouterLink>
     <nav>
-      <!-- Burger For Mobile -->
       <input type="checkbox" id="switch" />
-      <label for="switch" class="toggle"
-        ><font-awesome-icon class="icon" icon="fa-solid fa-bars" size="xl" style="color: #050505"
-      /></label>
-
-      <ul>
+      <label for="switch" class="toggle">
+        <font-awesome-icon class="icon" icon="fa-solid fa-bars" size="xl" style="color: #050505" />
+      </label>
+      <ul class="link-wrapper">
         <li><RouterLink to="/about">關於月欣</RouterLink></li>
         <li><RouterLink to="/products">產品介紹</RouterLink></li>
         <li><RouterLink to="/contact-us">聯絡我們</RouterLink></li>
@@ -22,6 +20,7 @@
           <RouterLink to="/files" style="pointer-events: none; color: #c0c0bf">檔案下載</RouterLink>
         </li>
       </ul>
+      <!-- Burger For Mobile -->
     </nav>
   </div>
 </template>
@@ -39,7 +38,7 @@ img {
   background-color: white;
   z-index: 100;
   width: 100%;
-  height: 4rem;
+  height: 100%;
   display: flex;
   max-width: inherit;
   // justify-content: center;
@@ -80,9 +79,6 @@ nav {
   }
   #switch {
     display: none;
-    &:checked ~ ul {
-      visibility: visible;
-    }
   }
   .toggle {
     visibility: hidden;
@@ -103,11 +99,20 @@ nav {
   .icon {
     display: block;
   }
+  nav ul {
+    transition: none;
+    visibility: hidden;
+    height: 0;
+    width: 0;
+    a {
+      transition: none;
+    }
+  }
   nav {
     .toggle {
       /** style */
       position: absolute;
-      display: flex;
+      display: contents;
       margin: 0 auto;
       height: 100%;
       width: 40%;
@@ -118,14 +123,31 @@ nav {
       cursor: pointer;
       /** style */
     }
-
-    #switch:checked ~ ul {
-      display: flex;
-      position: relative;
-    }
+    align-items: center;
+    justify-content: flex-end;
   }
-  nav ul {
-    display: none;
+  #switch:checked ~ .link-wrapper {
+    transition: width 0.4s;
+    // display: flex;
+    visibility: visible;
+    position: absolute;
+    flex-direction: column;
+    margin-top: 5rem;
+    height: fit-content;
+    width: 13rem;
+    background-color: #ffffff;
+    border-radius: 5px;
+    a {
+      width: 100%;
+      height: 3rem;
+      padding-left: 2rem;
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+      font-size: 1.1rem;
+      font-weight: 500;
+      font-family: 'Noto Sans TC';
+      transition: 0.4s;
+    }
   }
 }
 

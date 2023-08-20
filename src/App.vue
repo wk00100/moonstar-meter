@@ -5,7 +5,7 @@ import FooterItem from '@/components/semantic/FooterItem.vue'
 </script>
 
 <template>
-  <header class="shadow">
+  <header class="">
     <header-item></header-item>
   </header>
   <main>
@@ -25,21 +25,16 @@ ul {
   width: 1.5rem;
 }
 header {
-  position: fixed;
+  position: sticky;
+  top: 0;
   background-color: white;
   z-index: 100;
   width: 100%;
+  height: 4rem;
   max-width: inherit;
-  // justify-content: center;
-  &.shadow {
-    -webkit-box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
-    -moz-box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
-    box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
-  }
 }
 
 main {
-  padding-top: 2.5rem;
   width: 100%;
   min-height: 22rem;
   height: 100%;
@@ -47,7 +42,7 @@ main {
 
 footer {
   width: 100%;
-  // padding: 1rem 2rem 0 2rem;
+  min-height: calc(100vh - 22rem);
 }
 @media (max-width: 1199.98px) {
 }
