@@ -62,6 +62,7 @@ function onDisplayInfo(product: IProduct) {
 
 <style scoped lang="scss">
 .wrapper {
+  width: 100%;
   height: 100%;
   padding: 0 3rem;
 }
@@ -82,7 +83,8 @@ function onDisplayInfo(product: IProduct) {
     margin: 0.5rem 1rem;
     .product-img {
       width: 100%;
-      height: 10rem;
+      max-height: 100%;
+      min-height: 6rem;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -98,6 +100,33 @@ function onDisplayInfo(product: IProduct) {
         transition: 0.25s;
       }
     }
+  }
+}
+@media (max-width: 1199.98px) {
+  .wrapper {
+    padding: 0 1rem;
+  }
+  .product {
+    // display: flex;
+    max-width: 70%;
+    margin: 0.5rem 0.5rem;
+  }
+  .product-container {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+@media (max-width: 767.98px) {
+  // mobile mode
+  .wrapper {
+    padding: 0 1rem;
+  }
+  .product {
+    // display: flex;
+    max-width: 70%;
+    margin: 0.5rem 0.5rem;
+  }
+  .product-container {
+    grid-template-columns: 1fr 1fr;
   }
 }
 </style>

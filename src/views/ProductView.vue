@@ -53,4 +53,13 @@ main {
   width: 85rem;
   height: 100%;
 }
+@media (max-width: 767.98px) {
+  // mobile mode
+  main {
+    width: 100%;
+  }
+  aside {
+    display: none;
+  }
+}
 </style>
