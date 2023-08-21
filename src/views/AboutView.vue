@@ -35,4 +35,16 @@ main {
 article {
   margin: 2rem 2rem;
 }
+
+@media (max-width: 1199.98px) {
+  main {
+    padding: 0%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    article {
+      margin-top: 0;
+    }
+  }
+}
 </style>
