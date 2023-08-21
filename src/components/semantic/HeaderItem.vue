@@ -13,11 +13,25 @@
         <font-awesome-icon class="icon" icon="fa-solid fa-bars" size="xl" style="color: #050505" />
       </label>
       <ul class="link-wrapper">
-        <li><RouterLink to="/about">關於月欣</RouterLink></li>
-        <li><RouterLink to="/products">產品介紹</RouterLink></li>
-        <li><RouterLink to="/contact-us">聯絡我們</RouterLink></li>
         <li>
-          <RouterLink to="/files" style="pointer-events: none; color: #c0c0bf">檔案下載</RouterLink>
+          <RouterLink to="/about"
+            >關於月欣 <font-awesome-icon class="menu-arr" icon="fa-solid fa-angles-right"
+          /></RouterLink>
+        </li>
+        <li>
+          <RouterLink to="/products"
+            >產品介紹 <font-awesome-icon class="menu-arr" icon="fa-solid fa-angles-right"
+          /></RouterLink>
+        </li>
+        <li>
+          <RouterLink to="/contact-us"
+            >聯絡我們 <font-awesome-icon class="menu-arr" icon="fa-solid fa-angles-right" style=""
+          /></RouterLink>
+        </li>
+        <li>
+          <RouterLink to="/files" style="pointer-events: none; color: #c0c0bf"
+            >檔案下載 <font-awesome-icon class="menu-arr" icon="fa-solid fa-angles-right"
+          /></RouterLink>
         </li>
       </ul>
       <!-- Burger For Mobile -->
@@ -75,6 +89,9 @@ nav {
         font-family: 'TaipeiSans-Bold';
         padding: 1rem 1rem;
       }
+      .menu-arr {
+        display: none;
+      }
     }
   }
   #switch {
@@ -126,9 +143,11 @@ nav {
     align-items: center;
     justify-content: flex-end;
   }
+  li {
+    width: 13rem;
+  }
   #switch:checked ~ .link-wrapper {
     transition: width 0.4s;
-    // display: flex;
     visibility: visible;
     position: absolute;
     flex-direction: column;
@@ -137,7 +156,16 @@ nav {
     width: 13rem;
     background-color: #ffffff;
     border-radius: 5px;
+    .menu-arr {
+      display: flex;
+      text-decoration: none;
+      color: #082b49;
+      transition: 0.4s;
+    }
     a {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       width: 100%;
       height: 3rem;
       padding-left: 2rem;
@@ -146,7 +174,13 @@ nav {
       font-size: 1.1rem;
       font-weight: 500;
       font-family: 'Noto Sans TC';
-      transition: 0.4s;
+
+      &:hover {
+        > .menu-arr {
+          color: hsla(230, 100%, 37%, 0.2);
+        }
+        transition: all 0.4s;
+      }
     }
   }
 }
@@ -159,8 +193,6 @@ nav {
   nav {
     .name {
       display: none;
-    }
-    ul {
     }
   }
 }
