@@ -18,5 +18,20 @@
     "id": "TC",
     "name": "張力控制器",
     "isActive": false
+  },
+  {
+    "id": "ML",
+    "name": "米輪／編碼器",
+    "isActive": false
+  },
+  {
+    "id": "MBS",
+    "name": "液位傳感器",
+    "isActive": false
+  },
+  {
+    "id": "MSC",
+    "name": "布頭檢知控制器",
+    "isActive": false
   }
 ]
