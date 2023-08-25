@@ -33,17 +33,13 @@
             </label>
           </a>
           <ul class="type-menu">
-            <li class="type" @click="routeProduct({ id: 'AI', name: '類比表' })">
-              <RouterLink to="/products/AI">類比表</RouterLink>
-            </li>
-            <li class="type" @click="routeProduct({ id: 'C', name: '計數器' })">
-              <RouterLink to="/products/C">計數器</RouterLink>
-            </li>
-            <li class="type" @click="routeProduct({ id: 'SI', name: '速度表' })">
-              <RouterLink to="/products/SI">速度表</RouterLink>
-            </li>
-            <li class="type" @click="routeProduct({ id: 'TC', name: '張力控制器' })">
-              <RouterLink to="/products/TC">張力控制器</RouterLink>
+            <li
+              class="type"
+              v-for="category in categories"
+              :key="category.id"
+              @click="routeProduct(category)"
+            >
+              <RouterLink :to="'/products/' + category.id">{{ category.name }}</RouterLink>
             </li>
           </ul>
         </li>
@@ -62,9 +58,15 @@
   </div>
 </template>
 <script setup lang="ts">
+import { ref, onMounted } from 'vue'
 import { RouterLink } from 'vue-router'
 import { type ICategory } from '@/types/old/Data'
 const emit = defineEmits<{ (e: 'switch', type: ICategory): void }>()
+const categories = ref<ICategory[]>([])
+onMounted(async () => {
+  const response = await fetch(`/data/types.json`)
+  categories.value = await response.json()
+})
 
 // const type = ref<ICategory>({ id: 'AI', name: '類比表' })
 
