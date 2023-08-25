@@ -1,15 +1,30 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import { RouterView } from 'vue-router'
 import HeaderItem from '@/components/semantic/HeaderItem.vue'
 import FooterItem from '@/components/semantic/FooterItem.vue'
+import { type ICategory } from './types/old/Data'
+const type = ref<ICategory | undefined>(undefined)
+function toProductPage(newType: ICategory) {
+  console.log(newType)
+  type.value = newType
+}
 </script>
 
 <template>
   <header class="">
-    <header-item></header-item>
+    <header-item
+      @switch="
+        (newType) => {
+          toProductPage(newType)
+        }
+      "
+    >
+      ></header-item
+    >
   </header>
   <main>
-    <RouterView />
+    <RouterView :type="type" />
   </main>
   <footer>
     <footer-item></footer-item>

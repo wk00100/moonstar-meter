@@ -1,15 +1,27 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted, watch } from 'vue'
 import pageTitle from '@/components/PageTitleItem.vue'
 import sideBar from '@/components/sidebar/SideBarItem.vue'
 import { type ICategory, type IProduct } from '@/types/old/Data'
 import router from '@/router'
+
+const prop = defineProps<{ type: ICategory | undefined }>()
 let title: string = '產品介紹'
 const category = ref<ICategory>({ id: 'AI', name: '類比表' })
 const product = ref<IProduct>()
 function displayInfo(id: string) {
-  router.push(`products/${id}`)
+  router.push(`${category.value.id}/${id}`)
 }
+onMounted(() => {
+  if (prop.type !== undefined) category.value = prop.type
+})
+watch(
+  () => prop.type,
+  () => {
+    if (prop.type !== undefined) category.value = prop.type
+    console.log(prop.type)
+  }
+)
 </script>
 <template>
   <page-title :title="title"></page-title>
@@ -20,7 +32,7 @@ function displayInfo(id: string) {
         @switch="
           (newCategory) => {
             category = newCategory
-            router.push('/products')
+            router.push(`/products/${category.id}`)
           }
         "
       ></side-bar>

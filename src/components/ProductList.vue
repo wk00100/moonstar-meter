@@ -37,13 +37,11 @@ watch(
   () => prop.category.id,
   (newCategory) => {
     updateMatchProducts(newCategory)
-    console.log(newCategory)
   }
 )
 
 const prop = defineProps<{ category: ICategory }>() // pure type annotation
 const emit = defineEmits<{ (e: 'display', product: IProduct): void }>()
-
 const matchProducts = ref<IProduct[]>([])
 let products: IProduct[] = []
 function getImageUrl(name: string) {

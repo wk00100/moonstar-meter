@@ -32,10 +32,10 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, watch } from 'vue'
 import { type IProduct, type IProductInfo } from '@/types/old/Data'
 import router from '@/router'
-const props = defineProps<{ productInfo: IProduct }>()
+const props = defineProps<{ productInfo: IProduct | undefined }>()
 let ProductData: IProductInfo[]
 const emptyProduct = {
   // empty interface object for initialization
@@ -53,15 +53,23 @@ onMounted(async () => {
   const response = await fetch(`/data/product_info.json`) // get json response of all products
   ProductData = await response.json() // change json to object
   console.log(ProductData)
-  getProductInfo(props.productInfo.id) // find specific product to display
+  getProductInfo(props.productInfo?.id) // find specific product to display
   window.scrollTo(0, 0)
-  console.log(props.productInfo)
+  console.log(props.productInfo?.id)
 })
+watch(
+  () => props.productInfo,
+  (current, previous) => {
+    getProductInfo(current?.id)
+  }
+)
 
-function getProductInfo(id: string) {
+function getProductInfo(id: string | undefined) {
+  if (id === undefined) return
   for (let i = 0; i < ProductData.length; i++) {
     if (ProductData[i].id === id) {
       currentProduct.value = ProductData[i]
+      console.log('Product Get: ' + currentProduct.value)
       break
     }
   }
@@ -72,6 +80,7 @@ function goBack() {
 }
 
 function getImageUrl(name?: string): string | undefined {
+  console.log('getImageUrl')
   if (name) return new URL(`/src/assets/images/products/${name}.jpg`, import.meta.url).href
   else return undefined
 }
