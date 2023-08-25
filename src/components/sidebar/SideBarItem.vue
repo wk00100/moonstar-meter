@@ -24,7 +24,6 @@ const categories = ref<ISidebarCategory[]>([])
 onMounted(async () => {
   const response = await fetch(`/data/types.json`)
   categories.value = await response.json()
-  console.log('sidebar load success', categories)
   switchCategory(prop.currentCategory)
 })
 

@@ -39,6 +39,12 @@
             <li class="type" @click="routeProduct({ id: 'C', name: '計數器' })">
               <RouterLink to="/products/C">計數器</RouterLink>
             </li>
+            <li class="type" @click="routeProduct({ id: 'SI', name: '速度表' })">
+              <RouterLink to="/products/SI">速度表</RouterLink>
+            </li>
+            <li class="type" @click="routeProduct({ id: 'TC', name: '張力控制器' })">
+              <RouterLink to="/products/TC">張力控制器</RouterLink>
+            </li>
           </ul>
         </li>
         <!--li>
@@ -253,11 +259,11 @@ nav {
       padding-left: 3rem;
       padding-top: 0rem;
       padding-bottom: 0.5rem;
-      font-size: 1rem;
-      font-weight: 500;
-      font-family: 'Noto Sans TC';
+      font-size: 0.9rem;
+      font-weight: 400;
       a {
         padding: 0;
+        //color: #515153;
         font-family: 'Noto Sans TC';
       }
     }

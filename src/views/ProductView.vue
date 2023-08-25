@@ -19,7 +19,6 @@ watch(
   () => prop.type,
   () => {
     if (prop.type !== undefined) category.value = prop.type
-    console.log(prop.type)
   }
 )
 </script>

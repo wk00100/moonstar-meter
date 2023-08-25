@@ -6,7 +6,7 @@ import FooterItem from '@/components/semantic/FooterItem.vue'
 import { type ICategory } from './types/old/Data'
 const type = ref<ICategory | undefined>(undefined)
 function toProductPage(newType: ICategory) {
-  console.log(newType)
+  // to nevigate to product page
   type.value = newType
 }
 </script>
@@ -19,9 +19,7 @@ function toProductPage(newType: ICategory) {
           toProductPage(newType)
         }
       "
-    >
-      ></header-item
-    >
+    ></header-item>
   </header>
   <main>
     <RouterView :type="type" />
