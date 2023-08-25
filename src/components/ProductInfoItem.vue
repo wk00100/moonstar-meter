@@ -1,11 +1,11 @@
 <template>
   <div class="wrapper">
+    <h2 class="name">{{ currentProduct.id }} {{ currentProduct.name }}</h2>
     <div class="info">
       <div class="image">
         <img :src="getImageUrl(currentProduct.img)" />
       </div>
       <div class="summary">
-        <h2 class="name">{{ currentProduct.id }}<br />{{ currentProduct.name }}</h2>
         <div class="nav-tab">
           <a class="tab1" href="#feature">產品特色</a>
           <a class="tab2" href="#file">相關檔案</a>
@@ -82,6 +82,12 @@ function getImageUrl(name?: string): string | undefined {
 }
 </script>
 <style scoped lang="scss">
+.name {
+  display: flex;
+  justify-content: center;
+  padding-top: 0.5rem;
+  padding-bottom: 2rem;
+}
 h3 {
   // font-size: 1.5em;
   padding: 0.5rem 0;
@@ -150,6 +156,33 @@ h3 {
   }
   svg {
     color: black;
+  }
+}
+
+@media (max-width: 1199.98px) {
+  .image {
+    height: 10rem;
+  }
+}
+@media (max-width: 930px) {
+}
+
+@media (max-width: 767.98px) {
+  // mobile mode
+  .wrapper {
+    margin-right: 0;
+    margin: 2rem;
+  }
+  .info {
+    display: grid;
+    .summary {
+      margin-left: 0rem;
+      margin-right: 0rem;
+      margin-top: 1rem;
+    }
+  }
+  .image {
+    margin-right: 0;
   }
 }
 </style>
