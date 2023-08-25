@@ -80,15 +80,15 @@ function onDisplayInfo(product: IProduct) {
     max-width: 70%;
     margin: 0.5rem 1rem;
     .product-img {
-      width: 100%;
-      max-height: 100%;
-      min-height: 6rem;
+      max-width: 100%;
+      height: 7rem;
       display: flex;
       justify-content: center;
       align-items: center;
       border: 2px solid #647584;
       img {
-        max-width: 80%;
+        max-width: 7rem;
+        max-height: 6rem;
         z-index: 10;
       }
       &:hover {
