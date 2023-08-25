@@ -8,38 +8,64 @@
       </div>
     </RouterLink>
     <nav>
+      <!-- Burger For Mobile -->
       <input type="checkbox" id="switch" />
       <label for="switch" class="toggle">
         <font-awesome-icon class="icon" icon="fa-solid fa-bars" size="xl" style="color: #050505" />
       </label>
       <ul class="link-wrapper">
         <li>
-          <RouterLink to="/about"
-            >關於月欣 <font-awesome-icon class="menu-arr" icon="fa-solid fa-angles-right"
-          /></RouterLink>
+          <RouterLink class="item" to="/about">
+            關於月欣 <font-awesome-icon class="menu-arr" icon="fa-solid fa-angles-right" />
+          </RouterLink>
         </li>
-        <li>
-          <RouterLink to="/products"
-            >產品介紹 <font-awesome-icon class="menu-arr" icon="fa-solid fa-angles-right"
-          /></RouterLink>
+        <li class="d-product">
+          <RouterLink to="/products" class="item">
+            產品介紹 <font-awesome-icon class="menu-arr" icon="fa-solid fa-angles-right" />
+          </RouterLink>
         </li>
-        <li>
+        <li class="m-product">
+          <input type="checkbox" id="type-switch" />
+          <a class="item sub-btn">
+            <label class="products" for="type-switch">
+              產品介紹
+              <font-awesome-icon class="menu-arr" icon="fa-solid fa-angles-right" />
+            </label>
+          </a>
+          <ul class="type-menu">
+            <li class="type" @click="routeProduct({ id: 'AI', name: '類比表' })">
+              <RouterLink to="/products/AI">類比表</RouterLink>
+            </li>
+            <li class="type" @click="routeProduct({ id: 'C', name: '計數器' })">
+              <RouterLink to="/products/C">計數器</RouterLink>
+            </li>
+          </ul>
+        </li>
+        <!--li>
           <RouterLink to="/contact-us"
             >聯絡我們 <font-awesome-icon class="menu-arr" icon="fa-solid fa-angles-right" style=""
           /></RouterLink>
-        </li>
+        </!--li-->
         <li>
-          <RouterLink to="/files" style="pointer-events: none; color: #c0c0bf"
+          <RouterLink to="/files" class="item" style="pointer-events: none; color: #c0c0bf"
             >檔案下載 <font-awesome-icon class="menu-arr" icon="fa-solid fa-angles-right"
           /></RouterLink>
         </li>
       </ul>
-      <!-- Burger For Mobile -->
     </nav>
   </div>
 </template>
 <script setup lang="ts">
 import { RouterLink } from 'vue-router'
+import { type ICategory } from '@/types/old/Data'
+const emit = defineEmits<{ (e: 'switch', type: ICategory): void }>()
+
+// const type = ref<ICategory>({ id: 'AI', name: '類比表' })
+
+function routeProduct(newType: ICategory) {
+  // type.value = newType
+  emit('switch', newType)
+}
 </script>
 
 <style scoped lang="scss">
@@ -93,8 +119,12 @@ nav {
         display: none;
       }
     }
+    .m-product {
+      display: none;
+    }
   }
-  #switch {
+  #switch,
+  #type-switch {
     display: none;
   }
   .toggle {
@@ -145,15 +175,16 @@ nav {
   }
   li {
     width: 13rem;
+    flex-wrap: wrap;
   }
   #switch:checked ~ .link-wrapper {
     transition: width 0.4s;
     visibility: visible;
     position: absolute;
-    flex-direction: column;
-    margin-top: 5rem;
     height: fit-content;
     width: 13rem;
+    flex-direction: column;
+    margin-top: 5rem;
     background-color: #ffffff;
     border-radius: 5px;
     .menu-arr {
@@ -162,7 +193,7 @@ nav {
       color: #082b49;
       transition: 0.4s;
     }
-    a {
+    .item {
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -176,11 +207,18 @@ nav {
       font-family: 'Noto Sans TC';
 
       &:hover {
-        > .menu-arr {
+        .menu-arr {
           color: hsla(230, 100%, 37%, 0.2);
         }
         transition: all 0.4s;
       }
+    }
+
+    .products {
+      flex-grow: 1;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
   }
 }
@@ -188,12 +226,6 @@ nav {
 @media (max-width: 930px) {
   .wrapper {
     padding: 0 3rem;
-  }
-  // hide head nav
-  nav {
-    .name {
-      display: none;
-    }
   }
 }
 
@@ -205,6 +237,30 @@ nav {
   nav .toggle {
     padding-right: 1rem;
     width: 30%;
+  }
+  .d-product {
+    display: none;
+  }
+  nav ul .m-product {
+    display: flex;
+  }
+  #type-switch:checked ~ .type-menu {
+    visibility: visible;
+    height: fit-content;
+    width: 13rem;
+    display: block;
+    .type {
+      padding-left: 3rem;
+      padding-top: 0rem;
+      padding-bottom: 0.5rem;
+      font-size: 1rem;
+      font-weight: 500;
+      font-family: 'Noto Sans TC';
+      a {
+        padding: 0;
+        font-family: 'Noto Sans TC';
+      }
+    }
   }
 }
 </style>
