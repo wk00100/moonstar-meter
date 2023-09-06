@@ -1,7 +1,7 @@
 [
     {
-        "id": "MS-1、MS-2",
-        "name": "3½ 數位式類比表",
+        "id": "MS-1，MS-2",
+        "name": "3 1/2，4 1/2 數位式類比表",
         "img": "M40",
         "type": "AI",
         "description": "若需調整出場值（超過15%），輸入電壓時請先調整<b>倍率粗調開關（SW1）</b>，再調整<b>倍率微調</b>（SPAN）。",
@@ -15,6 +15,370 @@
                 "name": "MV-1型錄",
                 "link": "https://www.youtube.com/watch?v=dQw4w9WgXcQ&pp=ygUXbmV2ZXIgZ29ubmEgZ2l2ZSB5b3UgdXA%3D"
             }
+        ],
+        "specImg": [
+            "ms-1_ms-2"
+        ]
+    },
+    {
+        "id": "MS-3",
+        "name": "四位數微電腦類比表",
+        "img": "M40",
+        "type": "AI",
+        "description": "",
+        "bulletInfo": [],
+        "fileList": [],
+        "specImg": [
+            "ms-3"
+        ]
+    },
+    {
+        "id": "MV-41K",
+        "name": "四位數一段設定微電腦類比表",
+        "img": "M40_O",
+        "type": "AI",
+        "description": "",
+        "bulletInfo": [],
+        "fileList": [],
+        "specImg": [
+            "mv-41k"
+        ]
+    },
+    {
+        "id": "MC-60K-S",
+        "name": "六位數顯示型計數器／長度表",
+        "img": "M60",
+        "type": "C",
+        "description": "",
+        "bulletInfo": [],
+        "fileList": [],
+        "specImg": [
+            "mc-40k"
+        ]
+    },
+    {
+        "id": "MC-61K／MC-62K(A／B)",
+        "name": "六位一段／二段設定型計數器",
+        "img": "M66",
+        "type": "C",
+        "description": "",
+        "bulletInfo": [],
+        "fileList": [],
+        "specImg": [
+            "mc-61k"
+        ]
+    },
+    {
+        "id": "MC-63K(A／B／C)",
+        "name": "六位三段計數器系列",
+        "img": "M66",
+        "type": "C",
+        "description": "",
+        "bulletInfo": [],
+        "fileList": [],
+        "specImg": [
+            "mc-63k"
+        ]
+    },
+    {
+        "id": "MC-6160K",
+        "name": "六位數一段設定+六位總累計計數器",
+        "img": "M66",
+        "type": "C",
+        "description": "",
+        "bulletInfo": [],
+        "fileList": [],
+        "specImg": [
+            "mc-6160k"
+        ]
+    },
+    {
+        "id": "MC-6161K",
+        "name": "六位數一段設定＋總數設定計數器",
+        "img": "M66",
+        "type": "C",
+        "description": "",
+        "bulletInfo": [],
+        "fileList": [],
+        "specImg": [
+            "mc-6160k"
+        ]
+    },
+    {
+        "id": "MC-6260K",
+        "name": "六位數二段設定預報型＋總累計計數器",
+        "img": "M66",
+        "type": "C",
+        "description": "",
+        "bulletInfo": [],
+        "fileList": [],
+        "specImg": [
+            "mc-6160k"
+        ]
+    },
+    {
+        "id": "MCL-61K",
+        "name": "六位數一段設定＋線速表二合一型計數器",
+        "img": "M66",
+        "type": "C",
+        "description": "",
+        "bulletInfo": [],
+        "fileList": [],
+        "specImg": [
+            "mcl-61k"
+        ]
+    },
+    {
+        "id": "MCL-001",
+        "name": "六位數長度／包數／每分鐘平均包數控制器",
+        "img": "M66",
+        "type": "C",
+        "description": "",
+        "bulletInfo": [],
+        "fileList": [],
+        "specImg": [
+            "mcl-001"
+        ]
+    },
+    {
+        "id": "MC-6160A",
+        "name": "六位數一段設定＋六位總數安培數計數器",
+        "img": "M66",
+        "type": "C",
+        "description": "",
+        "bulletInfo": [],
+        "fileList": [],
+        "specImg": [
+            "mc-6160a"
+        ]
+    },
+    {
+        "id": "MRL-40K-S",
+        "name": "轉速表／線速度表",
+        "img": "M40",
+        "type": "SI",
+        "description": "",
+        "bulletInfo": [],
+        "fileList": [],
+        "specImg": [
+            "mrl-40k-s"
+        ]
+    },
+    {
+        "id": "MRL-52KC",
+        "name": "五位數二段設定型線速度表（HI，LO）",
+        "img": "M66",
+        "type": "SI",
+        "description": "",
+        "bulletInfo": [],
+        "fileList": [],
+        "specImg": [
+            "mrl-52kc"
+        ]
+    },
+    {
+        "id": "MRL-60K-V-S",
+        "name": "轉速表／線速度表（附類比輸出）",
+        "img": "M60",
+        "type": "SI",
+        "description": "",
+        "bulletInfo": [],
+        "fileList": [],
+        "specImg": [
+            "mrl-60k-v-s"
+        ]
+    },
+    {
+        "id": "MT-001",
+        "name": "比例式自動張力控制器",
+        "img": "MT",
+        "type": "TC",
+        "description": "",
+        "bulletInfo": [],
+        "fileList": [],
+        "specImg": [
+            "mt-001"
+        ]
+    },
+    {
+        "id": "AC-40K／AC-60K",
+        "name": "四／六位數顯示型計數器／長度表",
+        "img": "A40",
+        "type": "C",
+        "description": "",
+        "bulletInfo": [],
+        "fileList": [],
+        "specImg": [
+            "ac-40k"
+        ]
+    },
+    {
+        "id": "AC-41K／AC-61K",
+        "name": "四／六位一段設定型計數器",
+        "img": "A44",
+        "type": "C",
+        "description": "",
+        "bulletInfo": [],
+        "fileList": [],
+        "specImg": [
+            "ac-40k"
+        ]
+    },
+    {
+        "id": "AC-42KA／AC-62K(A／B)",
+        "name": "四／六位二段計數器系列",
+        "img": "A66",
+        "type": "C",
+        "description": "",
+        "bulletInfo": [],
+        "fileList": [],
+        "specImg": [
+            "ac-42ka",
+            "ac-40k"
+        ]
+    },
+    {
+        "id": "AC-63K(A／B／C)",
+        "name": "六位三段計數器，數值比較器",
+        "img": "A66",
+        "type": "C",
+        "description": "",
+        "bulletInfo": [],
+        "fileList": [],
+        "specImg": [
+            "ac-63ka_kb_kc"
+        ]
+    },
+    {
+        "id": "AC-6160K／6161K／6260K",
+        "name": "六位數兩台合併計數器",
+        "img": "A66",
+        "type": "C",
+        "description": "",
+        "bulletInfo": [],
+        "fileList": [],
+        "specImg": [
+            "ac-6160k_6161k_6260k"
+        ]
+    },
+    {
+        "id": "AC-63KC-11",
+        "name": "智能型六位數，AB相，凸輪間隙表",
+        "img": "A66",
+        "type": "C",
+        "description": "",
+        "bulletInfo": [],
+        "fileList": [],
+        "specImg": [
+            "ac-63kc-11"
+        ]
+    },
+    {
+        "id": "ARL-52KC",
+        "name": "五位數二段設定型線速度表（HI，LO）",
+        "img": "A66",
+        "type": "SI",
+        "description": "",
+        "bulletInfo": [],
+        "fileList": [],
+        "specImg": [
+            "arl-52kc"
+        ]
+    },
+    {
+        "id": "AC-41K-01",
+        "name": "四位數加減算逢零輸出計數器",
+        "img": "A40",
+        "type": "C",
+        "description": "",
+        "bulletInfo": [],
+        "fileList": [],
+        "specImg": [
+            "ac-41k-01"
+        ]
+    },
+    {
+        "id": "ACL-61K",
+        "name": "六位數一段設定＋線速表二合一型計數器",
+        "img": "A66",
+        "type": "C",
+        "description": "",
+        "bulletInfo": [],
+        "fileList": [],
+        "specImg": [
+            "acl-61k"
+        ]
+    },
+    {
+        "id": "PLC-62KB-V",
+        "name": "四位數加減算逢零輸出計數器",
+        "img": "A66",
+        "type": "C",
+        "description": "",
+        "bulletInfo": [],
+        "fileList": [],
+        "specImg": [
+            "plc-62kb-v"
+        ]
+    },
+    {
+        "id": "ML-1(2,3)M(Y)(米輪/碼輪)",
+        "name": "ML型長度發信器（米輪）",
+        "img": "ML",
+        "type": "ML",
+        "description": "",
+        "bulletInfo": [],
+        "fileList": [],
+        "specImg": [
+            "ml-1m"
+        ]
+    },
+    {
+        "id": "MBS-4-2",
+        "name": "數字型微差壓傳送器（微電腦）",
+        "img": "MBS",
+        "type": "MBS",
+        "description": "",
+        "bulletInfo": [],
+        "fileList": [],
+        "specImg": [
+            "mbs-4-2"
+        ]
+    },
+    {
+        "id": "KC-6460K",
+        "name": "六位數四段＋六位總累積＋線速度",
+        "img": "KC",
+        "type": "C",
+        "description": "",
+        "bulletInfo": [],
+        "fileList": [],
+        "specImg": [
+            "kc-6460k"
+        ]
+    },
+    {
+        "id": "MSC-01／S",
+        "name": "智慧型布頭位置檢知器",
+        "img": "MSC",
+        "type": "MSC",
+        "description": "",
+        "bulletInfo": [],
+        "fileList": [],
+        "specImg": [
+            "msc-01"
+        ]
+    },
+    {
+        "id": "MSC-02",
+        "name": "雙布頭控制器",
+        "img": "MSC",
+        "type": "MSC",
+        "description": "",
+        "bulletInfo": [],
+        "fileList": [],
+        "specImg": [
+            "msc-02"
         ]
     }
 ]

@@ -2,14 +2,14 @@
 import 'vue3-carousel/dist/carousel.css'
 import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
 function getImageUrl(index: number) {
-  return new URL(`/src/assets/images/banners/banner_${index}.jpg`, import.meta.url).href
+  return `/img/banners/banner_${index}.jpg`
 }
 </script>
 
 <template>
   <div class="wrapper">
     <carousel :items-to-show="1" :wrap-around="true" :autoplay="4000">
-      <slide v-for="slide in 5" :key="slide">
+      <slide v-for="slide in 4" :key="slide">
         <div class="img-container">
           <img :src="getImageUrl(slide)" alt="" />
           <!--h2>圖片 {{ slide }}</!--h2-->

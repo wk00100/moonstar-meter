@@ -12,10 +12,17 @@ export interface IProduct {
 export interface IProductInfo extends IProduct {
   description: string
   bulletInfo: string[]
+  // specification: IProductSpec[]
   fileList: IFile[]
+  specImg: string[]
 }
 
 interface IFile {
   name: string
   link: string
+}
+
+interface IProductSpec {
+  specfication: string
+  value: string
 }

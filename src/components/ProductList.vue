@@ -29,7 +29,7 @@
 import { type ICategory, type IProduct } from '@/types/old/Data'
 import { ref, watch, onMounted } from 'vue'
 onMounted(async () => {
-  const response = await fetch(`/data/products.json`)
+  const response = await fetch(`/data/product_info.json`)
   products = await response.json()
   updateMatchProducts(prop.category.id)
 })
