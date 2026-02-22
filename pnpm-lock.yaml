@@ -23,6 +23,9 @@ importers:
       '@fortawesome/vue-fontawesome':
         specifier: ^3.1.3
         version: 3.1.3(@fortawesome/fontawesome-svg-core@6.7.2)(vue@3.5.28(typescript@5.0.4))
+      '@tsconfig/node24':
+        specifier: ^24.0.4
+        version: 24.0.4
       bootstrap:
         specifier: ^5.3.8
         version: 5.3.8(@popperjs/core@2.11.8)
@@ -42,9 +45,6 @@ importers:
       '@rushstack/eslint-patch':
         specifier: ^1.16.1
         version: 1.16.1
-      '@tsconfig/node24':
-        specifier: ^24.0.4
-        version: 24.0.4
       '@types/node':
         specifier: ^24.0.0
         version: 24.10.13
