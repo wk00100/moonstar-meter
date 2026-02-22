@@ -5,20 +5,17 @@
       <p style="border-left: 2px solid #c0c0bf; padding-left: 0.5rem">
         <font-awesome-icon
           icon="fa-solid fa-location-dot"
-          style="color: #ededed"
           class="icon"
         />&ensp;新北市板橋區信義路163巷11號3樓<br />
         <font-awesome-icon
           icon="fa-solid fa-phone"
-          style="color: #ededed"
           class="icon"
         />&ensp;886-2-89541027 &nbsp;&nbsp;
         <font-awesome-icon
           icon="fa-solid fa-print"
-          style="color: #ededed"
           class="icon"
         />&ensp;886-2-89541028<br />
-        <font-awesome-icon icon="fa-solid fa-link" style="color: #ededed" class="icon" />&ensp;<a
+        <font-awesome-icon icon="fa-solid fa-link" class="icon" />&ensp;<a
           href="http://www.moonstar-meter.com/"
           target="_blank"
           style="color: #c0c0bf"
@@ -26,34 +23,8 @@
         ><br />
         <font-awesome-icon
           icon="fa-solid fa-envelope"
-          style="color: #ededed"
           class="icon"
         />&ensp;msq22489@ms69.hinet.net<br />
-      </p>
-    </div>
-    <div class="company">
-      <h3>廣東</h3>
-      <p style="border-left: 2px solid #c0c0bf; padding-left: 0.5rem">
-        <font-awesome-icon
-          icon="fa-solid fa-location-dot"
-          style="color: #ededed"
-          class="icon"
-        />&ensp;東莞市虎門鎮萬科金色里程4棟405<br />
-        <font-awesome-icon
-          icon="fa-solid fa-phone"
-          style="color: #ededed"
-          class="icon"
-        />&ensp;86-769-82882512 &nbsp;&nbsp;
-        <font-awesome-icon
-          icon="fa-solid fa-print"
-          style="color: #ededed"
-        />&ensp;86-769-82882516<br />
-        <font-awesome-icon icon="fa-solid fa-link" style="color: #ededed" class="icon" />&ensp;<a
-          href="http://www.moonstar-meter.com/"
-          target="_blank"
-          style="color: #c0c0bf"
-          >www.moonstar-meter.com</a
-        ><br />
       </p>
     </div>
     <div class="copyright"><p>Copyright© 2023 Moonstar Technology Co.,Ltd.</p></div>
@@ -63,6 +34,9 @@
 
 <style scoped lang="scss">
 $icon: '#ededed';
+font-awesome-icon{
+  color: $icon;
+}
 ul {
   list-style: none;
 }
