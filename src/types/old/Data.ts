@@ -22,7 +22,7 @@ interface IFile {
   link: string
 }
 
-interface IProductSpec {
-  specfication: string
-  value: string
-}
+// interface IProductSpec {
+//   specfication: string
+//   value: string
+// }

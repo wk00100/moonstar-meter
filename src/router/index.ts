@@ -19,20 +19,23 @@ const router = createRouter({
     },
     {
       path: '/products',
+      name: 'products',
       component: () => import('../views/ProductView.vue'),
+      meta: { title: '產品介紹' },
       children: [
         {
           path: ':type',
+          name: 'product-list',
           component: () => import('../components/ProductList.vue'),
-          children: [
-            //{ path: '', component: () => import('../components/ProductInfoItem.vue') }
-          ]
+          meta: { title: '產品列表' }
         },
         {
           path: ':type/:productId',
-          component: () => import('../components/ProductInfoItem.vue')
+          name: 'product-detail',
+          component: () => import('../components/ProductInfoItem.vue'),
+          meta: { title: '產品詳情' }
         },
-        { path: '', redirect: '/products/AI' }
+        { path: '', name: 'product-default', redirect: '/products/AI' }
       ]
     },
     {

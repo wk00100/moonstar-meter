@@ -1,24 +1,42 @@
 <script setup lang="ts">
-import { ref, onMounted, watch } from 'vue'
+import { computed, onMounted, watch } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 import pageTitle from '@/components/PageTitleItem.vue'
 import sideBar from '@/components/sidebar/SideBarItem.vue'
 import { type ICategory, type IProduct } from '@/types/old/Data'
-import router from '@/router'
+import { useProductData } from '@/composables/useProductData'
 
-const prop = defineProps<{ type: ICategory | undefined }>()
-let title: string = '產品介紹'
-const category = ref<ICategory>({ id: 'AI', name: '類比表' })
-const product = ref<IProduct>()
+const title: string = '產品介紹'
+const fallbackCategory: ICategory = { id: 'AI', name: '類比表' }
+const route = useRoute()
+const router = useRouter()
+const { defaultCategoryId, loadCategories, normalizeRouteParam, findCategoryById } = useProductData()
+
+const routeCategoryId = computed(() => normalizeRouteParam(route.params.type))
+const category = computed<ICategory>(
+  () => findCategoryById(routeCategoryId.value) ?? findCategoryById(defaultCategoryId) ?? fallbackCategory
+)
+
 function displayInfo(id: string) {
-  router.push(`${category.value.id}/${id}`)
+  router.push(`/products/${category.value.id}/${encodeURIComponent(id)}`)
 }
+
+async function ensureValidCategory() {
+  await loadCategories()
+
+  if (findCategoryById(routeCategoryId.value) === undefined) {
+    router.replace(`/products/${defaultCategoryId}`)
+  }
+}
+
 onMounted(() => {
-  if (prop.type !== undefined) category.value = prop.type
+  ensureValidCategory()
 })
+
 watch(
-  () => prop.type,
+  () => route.params.type,
   () => {
-    if (prop.type !== undefined) category.value = prop.type
+    ensureValidCategory()
   }
 )
 </script>
@@ -30,8 +48,7 @@ watch(
         :current-category="category"
         @switch="
           (newCategory) => {
-            category = newCategory
-            router.push(`/products/${category.id}`)
+            router.push(`/products/${newCategory.id}`)
           }
         "
       ></side-bar>
@@ -41,12 +58,9 @@ watch(
         :category="category"
         @display="
           (info:IProduct) => {
-            product = info
             displayInfo(info.id)
-            // isDisplayInfo = true
           }
         "
-        :product-info="product"
       ></RouterView>
     </main>
   </div>

@@ -27,30 +27,20 @@
 
 <script setup lang="ts">
 import { type ICategory, type IProduct } from '@/types/old/Data'
-import { ref, watch, onMounted } from 'vue'
-onMounted(async () => {
-  const response = await fetch(`/data/product_info.json`)
-  products = await response.json()
-  updateMatchProducts(prop.category.id)
-})
-watch(
-  () => prop.category.id,
-  (newCategory) => {
-    updateMatchProducts(newCategory)
-  }
-)
+import { computed, onMounted } from 'vue'
+import { useProductData } from '@/composables/useProductData'
 
 const prop = defineProps<{ category: ICategory }>() // pure type annotation
 const emit = defineEmits<{ (e: 'display', product: IProduct): void }>()
-const matchProducts = ref<IProduct[]>([])
-let products: IProduct[] = []
+const { loadProducts, getProductsByType } = useProductData()
+const matchProducts = computed(() => getProductsByType(prop.category.id))
+
+onMounted(async () => {
+  await loadProducts()
+})
+
 function getImageUrl(name: string) {
   return new URL(`/src/assets/images/products/${name}.jpg`, import.meta.url).href
-}
-
-function updateMatchProducts(typeName: string): void {
-  matchProducts.value = products.filter((products) => products.type === typeName)
-  return
 }
 
 function onDisplayInfo(product: IProduct) {

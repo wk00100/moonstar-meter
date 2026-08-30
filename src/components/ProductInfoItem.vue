@@ -43,12 +43,12 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { onMounted, ref, watch } from 'vue'
-import { type IProduct, type IProductInfo } from '@/types/old/Data'
-import router from '@/router'
-const props = defineProps<{ productInfo: IProduct | undefined }>()
-let ProductData: IProductInfo[]
-const emptyProduct = {
+import { computed, onMounted, watch } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
+import { type IProductInfo } from '@/types/old/Data'
+import { useProductData } from '@/composables/useProductData'
+
+const emptyProduct: IProductInfo = {
   // empty interface object for initialization
   id: '',
   name: '',
@@ -59,34 +59,47 @@ const emptyProduct = {
   fileList: [],
   specImg: []
 }
-const currentProduct = ref<IProductInfo>(emptyProduct)
+const route = useRoute()
+const router = useRouter()
+const {
+  defaultCategoryId,
+  loadProducts,
+  normalizeRouteParam,
+  findProductByIdAndType
+} = useProductData()
+const categoryId = computed(() => normalizeRouteParam(route.params.type))
+const productId = computed(() => normalizeRouteParam(route.params.productId))
+const currentProduct = computed<IProductInfo>(
+  () => findProductByIdAndType(productId.value, categoryId.value) ?? emptyProduct
+)
 
 onMounted(async () => {
-  const response = await fetch(`/data/product_info.json`) // get json response of all products
-  ProductData = await response.json() // change json to object
-  getProductInfo(props.productInfo?.id) // find specific product to display
-  console.log(props.productInfo)
+  await ensureProductExists()
   window.scrollTo(0, 0)
 })
+
 watch(
-  () => props.productInfo,
-  (current) => {
-    getProductInfo(current?.id)
+  () => [route.params.type, route.params.productId],
+  async () => {
+    await ensureProductExists()
+    window.scrollTo(0, 0)
   }
 )
 
-function getProductInfo(id: string | undefined) {
-  if (id === undefined) return
-  for (let i = 0; i < ProductData.length; i++) {
-    if (ProductData[i].id === id) {
-      currentProduct.value = ProductData[i]
-      break
-    }
+async function ensureProductExists() {
+  await loadProducts()
+
+  if (
+    productId.value !== undefined &&
+    findProductByIdAndType(productId.value, categoryId.value) === undefined
+  ) {
+    router.replace(`/products/${categoryId.value ?? defaultCategoryId}`)
   }
 }
+
 function goBack() {
   // back to product list page
-  router.push('/products')
+  router.push(`/products/${categoryId.value ?? defaultCategoryId}`)
 }
 
 function getSpecImgUrl(name?: string): string | undefined {

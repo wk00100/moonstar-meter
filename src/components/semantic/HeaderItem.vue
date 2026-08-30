@@ -33,13 +33,8 @@
             </label>
           </a>
           <ul class="type-menu">
-            <li
-              class="type"
-              v-for="category in categories"
-              :key="category.id"
-              @click="routeProduct(category)"
-            >
-              <RouterLink :to="'/products/' + category.id">{{ category.name }}</RouterLink>
+            <li class="type" v-for="category in categories" :key="category.id">
+              <RouterLink :to="`/products/${category.id}`">{{ category.name }}</RouterLink>
             </li>
           </ul>
         </li>
@@ -58,22 +53,15 @@
   </div>
 </template>
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { onMounted } from 'vue'
 import { RouterLink } from 'vue-router'
-import { type ICategory } from '@/types/old/Data'
-const emit = defineEmits<{ (e: 'switch', type: ICategory): void }>()
-const categories = ref<ICategory[]>([])
+import { useProductData } from '@/composables/useProductData'
+
+const { categories, loadCategories } = useProductData()
+
 onMounted(async () => {
-  const response = await fetch(`/data/types.json`)
-  categories.value = await response.json()
+  await loadCategories()
 })
-
-// const type = ref<ICategory>({ id: 'AI', name: '類比表' })
-
-function routeProduct(newType: ICategory) {
-  // type.value = newType
-  emit('switch', newType)
-}
 </script>
 
 <style scoped lang="scss">

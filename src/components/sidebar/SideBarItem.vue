@@ -8,7 +8,7 @@
       <li v-for="category in categories" :key="category.id">
         <a
           @click="switchCategory(category)"
-          :class="[category.isActive ? 'active' : 'not-active']"
+          :class="[category.id === prop.currentCategory.id ? 'active' : 'not-active']"
           >{{ category.name }}</a
         >
         <div class="bottom-line"></div>
@@ -17,29 +17,20 @@
   </div>
 </template>
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { onMounted } from 'vue'
 import { type ICategory } from '@/types/old/Data'
+import { useProductData } from '@/composables/useProductData'
+
 const prop = defineProps<{ currentCategory: ICategory }>()
-const categories = ref<ISidebarCategory[]>([])
+const emit = defineEmits<{ (e: 'switch', newCategory: ICategory): void }>()
+const { categories, loadCategories } = useProductData()
+
 onMounted(async () => {
-  const response = await fetch(`/data/types.json`)
-  categories.value = await response.json()
-  switchCategory(prop.currentCategory)
+  await loadCategories()
 })
 
-const emit = defineEmits<{ (e: 'switch', newCategory: ICategory): void }>()
 function switchCategory(category: ICategory) {
   emit('switch', category)
-  for (let i = 0; i < categories.value.length; i++) {
-    if (categories.value[i].id === category.id) {
-      categories.value[i].isActive = true
-    } else {
-      categories.value[i].isActive = false
-    }
-  }
-}
-interface ISidebarCategory extends ICategory {
-  isActive?: boolean
 }
 </script>
 <style scoped lang="scss">
@@ -88,4 +79,3 @@ li {
   color: gray;
 }
 </style>
-@/types/old/Category

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import pageTitle from '@/components/PageTitleItem.vue'
-let title: string = '關於月欣'
+const title: string = '關於月欣'
 </script>
 <template>
   <page-title :title="title"></page-title>

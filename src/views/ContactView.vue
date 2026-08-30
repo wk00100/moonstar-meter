@@ -2,7 +2,7 @@
 import pageTitle from '@/components/PageTitleItem.vue'
 import mailForm from '@/components/MailContactItem.vue'
 import companyLocation from '@/components/LocationContactItem.vue'
-let title: string = '聯絡我們'
+const title: string = '聯絡我們'
 </script>
 <template>
   <div class="wrapper">
