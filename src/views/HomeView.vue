@@ -34,13 +34,15 @@ function getImageUrl(index: number) {
     z-index: 100;
   }
   .img-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 20rem;
     width: 100%;
+    aspect-ratio: 16 / 9;
+    max-height: 20rem;
+    overflow: hidden;
     img {
+      display: block;
       width: 100%;
+      height: 100%;
+      object-fit: contain;
     }
   }
 }
