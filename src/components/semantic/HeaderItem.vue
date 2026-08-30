@@ -1,6 +1,6 @@
 <template>
-  <div class="wrapper shadow">
-    <RouterLink to="/" class="landmark">
+  <div class="wrapper">
+    <RouterLink to="/" class="landmark" @click="closeMenu">
       <img alt="MOONSTAR" class="logo" src="@/assets/logo.svg" />
       <div class="name">
         <h3>月欣科技有限公司</h3>
@@ -9,23 +9,23 @@
     </RouterLink>
     <nav>
       <!-- Burger For Mobile -->
-      <input type="checkbox" id="switch" />
+      <input type="checkbox" id="switch" v-model="isMenuOpen" />
       <label for="switch" class="toggle">
         <font-awesome-icon class="icon" icon="fa-solid fa-bars" size="xl" style="color: #050505" />
       </label>
       <ul class="link-wrapper">
         <li>
-          <RouterLink class="item" to="/about">
+          <RouterLink class="item" to="/about" @click="closeMenu">
             關於月欣 <font-awesome-icon class="menu-arr" icon="fa-solid fa-angles-right" />
           </RouterLink>
         </li>
         <li class="d-product">
-          <RouterLink to="/products" class="item">
+          <RouterLink to="/products" class="item" @click="closeMenu">
             產品介紹 <font-awesome-icon class="menu-arr" icon="fa-solid fa-angles-right" />
           </RouterLink>
         </li>
         <li class="m-product">
-          <input type="checkbox" id="type-switch" />
+          <input type="checkbox" id="type-switch" v-model="isTypeMenuOpen" />
           <a class="item sub-btn">
             <label class="products" for="type-switch">
               產品介紹
@@ -34,7 +34,9 @@
           </a>
           <ul class="type-menu">
             <li class="type" v-for="category in categories" :key="category.id">
-              <RouterLink :to="`/products/${category.id}`">{{ category.name }}</RouterLink>
+              <RouterLink :to="`/products/${category.id}`" @click="closeMenu">{{
+                category.name
+              }}</RouterLink>
             </li>
           </ul>
         </li>
@@ -53,11 +55,26 @@
   </div>
 </template>
 <script setup lang="ts">
-import { onMounted } from 'vue'
-import { RouterLink } from 'vue-router'
+import { onMounted, ref, watch } from 'vue'
+import { RouterLink, useRoute } from 'vue-router'
 import { useProductData } from '@/composables/useProductData'
 
 const { categories, loadCategories } = useProductData()
+const route = useRoute()
+const isMenuOpen = ref(false)
+const isTypeMenuOpen = ref(false)
+
+function closeMenu() {
+  isMenuOpen.value = false
+  isTypeMenuOpen.value = false
+}
+
+watch(
+  () => route.fullPath,
+  () => {
+    closeMenu()
+  }
+)
 
 onMounted(async () => {
   await loadCategories()
@@ -69,23 +86,19 @@ img {
   width: 3.2rem;
 }
 .wrapper {
+  position: relative;
   width: 100%;
-  padding: 0 3rem 0 6rem;
+  margin: 0;
+  padding: 0 2rem;
   background-color: white;
   z-index: 100;
-  width: 100%;
   height: 100%;
   display: flex;
-  max-width: inherit;
-  // justify-content: center;
-  &.shadow {
-    -webkit-box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
-    -moz-box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
-    box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
-  }
+  justify-content: space-between;
+  align-items: stretch;
   .landmark {
     display: flex;
-    // padding: 0 3rem;
+    flex-shrink: 0;
     &:hover {
       background-color: #00000000;
     }
@@ -100,6 +113,11 @@ img {
   }
 }
 nav {
+  display: flex;
+  flex: 1 1 auto;
+  min-width: 0;
+  justify-content: flex-end;
+  align-items: stretch;
   ul {
     display: flex;
     align-self: stretch;
@@ -124,14 +142,8 @@ nav {
     display: none;
   }
   .toggle {
-    visibility: hidden;
+    display: none;
   }
-  display: flex;
-  flex-grow: 1;
-  justify-content: center;
-  align-items: flex-end;
-  align-self: stretch;
-  // padding-left: 3rem;
 
   .router-link-active {
     color: #e0e7ff;
@@ -142,47 +154,43 @@ nav {
   .icon {
     display: block;
   }
+  nav {
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: flex-end;
+    .toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.75rem;
+      height: 2.75rem;
+      visibility: visible;
+      cursor: pointer;
+    }
+  }
   nav ul {
-    transition: none;
     visibility: hidden;
     height: 0;
     width: 0;
-    a {
-      transition: none;
-    }
-  }
-  nav {
-    .toggle {
-      /** style */
-      position: absolute;
-      display: contents;
-      margin: 0 auto;
-      height: 100%;
-      width: 40%;
-      z-index: 110;
-      align-items: center;
-      justify-content: flex-end;
-      visibility: visible;
-      cursor: pointer;
-      /** style */
-    }
-    align-items: center;
-    justify-content: flex-end;
+    overflow: hidden;
   }
   li {
-    width: 13rem;
+    width: 100%;
     flex-wrap: wrap;
   }
   #switch:checked ~ .link-wrapper {
-    transition: width 0.4s;
     visibility: visible;
+    overflow: visible;
     position: absolute;
+    top: 4rem;
+    left: 0;
+    right: 0;
+    z-index: 120;
     height: fit-content;
-    width: 13rem;
+    width: 100%;
     flex-direction: column;
-    margin-top: 5rem;
     background-color: #ffffff;
-    border-radius: 5px;
+    box-shadow: 0 4px 12px rgba(57, 63, 72, 0.2);
     .menu-arr {
       display: flex;
       text-decoration: none;
@@ -196,6 +204,7 @@ nav {
       width: 100%;
       height: 3rem;
       padding-left: 2rem;
+      padding-right: 2rem;
       padding-top: 0.5rem;
       padding-bottom: 0.5rem;
       font-size: 1.1rem;
@@ -221,18 +230,13 @@ nav {
 
 @media (max-width: 930px) {
   .wrapper {
-    padding: 0 3rem;
+    padding: 0 1.5rem;
   }
 }
 
 @media (max-width: 767.98px) {
-  // mobile mode
   .wrapper {
-    padding-right: 1rem;
-  }
-  nav .toggle {
-    padding-right: 1rem;
-    width: 30%;
+    padding: 0 1rem;
   }
   .d-product {
     display: none;
@@ -243,17 +247,16 @@ nav {
   #type-switch:checked ~ .type-menu {
     visibility: visible;
     height: fit-content;
-    width: 13rem;
+    width: 100%;
     display: block;
     .type {
-      padding-left: 3rem;
+      padding-left: 2.5rem;
       padding-top: 0rem;
       padding-bottom: 0.5rem;
       font-size: 0.9rem;
       font-weight: 400;
       a {
         padding: 0;
-        //color: #515153;
         font-family: 'Noto Sans TC';
       }
     }

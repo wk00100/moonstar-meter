@@ -44,10 +44,10 @@ ul {
   width: 1.5rem;
 }
 .wrapper {
-  min-height: inherit;
   width: 100%;
-  padding: 1rem 2rem 0 2rem;
-  background-color: #504b4a;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 1.5rem 2rem 1rem;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   h3 {

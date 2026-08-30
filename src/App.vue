@@ -31,18 +31,19 @@ header {
   z-index: 100;
   width: 100%;
   height: 4rem;
-  max-width: inherit;
+  flex-shrink: 0;
+  box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
 }
 
 main {
   width: 100%;
-  min-height: 22rem;
-  height: 100%;
+  flex: 1 0 auto;
 }
 
 footer {
   width: 100%;
-  min-height: calc(100vh - 22rem);
+  flex-shrink: 0;
+  background-color: #504b4a;
 }
 @media (max-width: 1199.98px) {
 }
