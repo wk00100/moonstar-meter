@@ -1,3 +1,4 @@
+/// <reference types="node" />
 import { readonly, ref } from 'vue'
 import { type ICategory, type IProductInfo } from '@/types/old/Data'
 
@@ -10,6 +11,13 @@ let categoriesRequest: Promise<void> | undefined
 let productsRequest: Promise<void> | undefined
 
 async function fetchJson<T>(url: string): Promise<T> {
+  if (import.meta.env.SSR) {
+    // Prerendering runs in Node where relative fetch() has no origin, so read public/ directly.
+    const { readFile } = await import('node:fs/promises')
+    const { join } = await import('node:path')
+    return JSON.parse(await readFile(join(process.cwd(), 'public', url), 'utf-8'))
+  }
+
   const response = await fetch(url)
 
   if (!response.ok) {
