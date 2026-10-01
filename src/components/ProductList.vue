@@ -29,6 +29,7 @@
 import { type ICategory } from '@/types/old/Data'
 import { computed, onMounted } from 'vue'
 import { useProductData } from '@/composables/useProductData'
+import { getProductImageUrl } from '@/utils/productImage'
 
 const prop = defineProps<{ category: ICategory }>() // pure type annotation
 const { loadProducts, getProductsByType } = useProductData()
@@ -38,9 +39,7 @@ onMounted(async () => {
   await loadProducts()
 })
 
-function getImageUrl(name: string) {
-  return new URL(`/src/assets/images/products/${name}.jpg`, import.meta.url).href
-}
+const getImageUrl = getProductImageUrl
 </script>
 
 <style scoped lang="scss">

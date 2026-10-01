@@ -47,6 +47,7 @@ import { computed, onMounted, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { type IProductInfo } from '@/types/old/Data'
 import { useProductData } from '@/composables/useProductData'
+import { getProductImageUrl } from '@/utils/productImage'
 
 const emptyProduct: IProductInfo = {
   // empty interface object for initialization
@@ -129,10 +130,7 @@ function getSpecImgUrl(name?: string): string | undefined {
   if (name) return `/img/spec/${name}.jpg`
   else return undefined
 }
-function getImageUrl(name?: string): string | undefined {
-  if (name) return new URL(`/src/assets/images/products/${name}.jpg`, import.meta.url).href
-  else return undefined
-}
+const getImageUrl = getProductImageUrl
 </script>
 <style scoped lang="scss">
 .name {
