@@ -4,11 +4,12 @@ import './assets/font/font.css'
 
 import './assets/main.scss'
 
-import { createApp } from 'vue'
+import { ViteSSG } from 'vite-ssg'
 import { createPinia } from 'pinia'
 
 import App from './App.vue'
-import router from './router'
+import { routes } from './router'
+import { useProductData } from './composables/useProductData'
 /* import the fontawesome core */
 import { library } from '@fortawesome/fontawesome-svg-core'
 
@@ -40,9 +41,17 @@ library.add(
   faBars,
   faAnglesRight
 )
-const app = createApp(App)
 
-app.use(createPinia())
-app.use(router)
-app.component('font-awesome-icon', FontAwesomeIcon)
-app.mount('#app')
+// vite-ssg calls this at build time (prerender) and in the browser (hydrate).
+export const createApp = ViteSSG(
+  App,
+  { routes, base: import.meta.env.BASE_URL },
+  async ({ app }) => {
+    app.use(createPinia())
+    app.component('font-awesome-icon', FontAwesomeIcon)
+
+    // Data must be ready before rendering so the prerendered HTML and the
+    // first client render match (otherwise hydration mismatches).
+    await useProductData().loadProductData()
+  }
+)

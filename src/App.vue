@@ -1,7 +1,22 @@
 <script setup lang="ts">
-import { RouterView } from 'vue-router'
+import { RouterView, useRoute } from 'vue-router'
+import { useHead } from '@unhead/vue'
 import HeaderItem from '@/components/semantic/HeaderItem.vue'
 import FooterItem from '@/components/semantic/FooterItem.vue'
+
+const route = useRoute()
+
+// title / description come from the deepest matched route that defines them
+function matchedMeta(key: 'title' | 'description'): string | undefined {
+  return [...route.matched].reverse().find((record) => record.meta[key])?.meta[key]
+}
+
+useHead({
+  // unhead defaults to lang="en" and overrides the value in index.html
+  htmlAttrs: { lang: 'zh-Hant-TW' },
+  title: () => matchedMeta('title') ?? '月欣科技有限公司',
+  meta: [{ name: 'description', content: () => matchedMeta('description') }]
+})
 </script>
 
 <template>
