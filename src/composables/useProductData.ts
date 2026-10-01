@@ -59,23 +59,29 @@ async function loadProductData(): Promise<void> {
   await Promise.all([loadCategories(), loadProducts()])
 }
 
+// Netlify serves prerendered folders at lowercase URLs (/products/c/), so route params
+// arrive lowercased. Ids are matched case-insensitively to keep those URLs working.
+function sameId(a: string | undefined, b: string | undefined): boolean {
+  return a !== undefined && b !== undefined && a.toLowerCase() === b.toLowerCase()
+}
+
 function findCategoryById(id: string | undefined): ICategory | undefined {
-  return categories.value.find((category) => category.id === id)
+  return categories.value.find((category) => sameId(category.id, id))
 }
 
 function findProductById(id: string | undefined): IProductInfo | undefined {
-  return products.value.find((product) => product.id === id)
+  return products.value.find((product) => sameId(product.id, id))
 }
 
 function findProductByIdAndType(
   id: string | undefined,
   type: string | undefined
 ): IProductInfo | undefined {
-  return products.value.find((product) => product.id === id && product.type === type)
+  return products.value.find((product) => sameId(product.id, id) && sameId(product.type, type))
 }
 
 function getProductsByType(type: string): IProductInfo[] {
-  return products.value.filter((product) => product.type === type)
+  return products.value.filter((product) => sameId(product.type, type))
 }
 
 export function useProductData() {
