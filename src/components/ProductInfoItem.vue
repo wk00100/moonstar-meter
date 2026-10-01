@@ -45,9 +45,9 @@
 <script lang="ts" setup>
 import { computed, onMounted, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { useHead } from '@unhead/vue'
 import { type IProductInfo } from '@/types/old/Data'
 import { useProductData } from '@/composables/useProductData'
+import { usePageHead, SITE_NAME } from '@/composables/usePageHead'
 import { getProductImageUrl } from '@/utils/productImage'
 
 const emptyProduct: IProductInfo = {
@@ -88,22 +88,16 @@ watch(
   }
 )
 
-// Registered after App.vue's useHead, so these values win while a product is shown.
-useHead({
+usePageHead({
   title: () =>
     currentProduct.value.id
-      ? `${currentProduct.value.id} ${currentProduct.value.name}｜月欣科技有限公司`
+      ? `${currentProduct.value.id} ${currentProduct.value.name}｜${SITE_NAME}`
       : undefined,
-  meta: [
-    {
-      name: 'description',
-      content: () => {
-        const { id, name, description } = currentProduct.value
-        if (!id) return undefined
-        return `${id} ${name}。${description.replace(/<[^>]*>/g, '')}`.substring(0, 120)
-      }
-    }
-  ]
+  description: () => {
+    const { id, name, description } = currentProduct.value
+    if (!id) return undefined
+    return `${id} ${name}。${description.replace(/<[^>]*>/g, '')}`.substring(0, 120)
+  }
 })
 
 async function ensureProductExists() {

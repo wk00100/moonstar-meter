@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { RouterView, useRoute } from 'vue-router'
 import { useHead } from '@unhead/vue'
+import { usePageHead, SITE_NAME } from '@/composables/usePageHead'
 import HeaderItem from '@/components/semantic/HeaderItem.vue'
 import FooterItem from '@/components/semantic/FooterItem.vue'
 
@@ -13,9 +14,12 @@ function matchedMeta(key: 'title' | 'description'): string | undefined {
 
 useHead({
   // unhead defaults to lang="en" and overrides the value in index.html
-  htmlAttrs: { lang: 'zh-Hant-TW' },
-  title: () => matchedMeta('title') ?? '月欣科技有限公司',
-  meta: [{ name: 'description', content: () => matchedMeta('description') }]
+  htmlAttrs: { lang: 'zh-Hant-TW' }
+})
+
+usePageHead({
+  title: () => matchedMeta('title') ?? SITE_NAME,
+  description: () => matchedMeta('description')
 })
 </script>
 
