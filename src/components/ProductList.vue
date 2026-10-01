@@ -4,11 +4,11 @@
       <h2>{{ prop.category.name }}</h2>
     </div>
     <div class="product-container">
-      <div
+      <RouterLink
         class="product"
         v-for="product in matchProducts"
         :key="product.id"
-        @click="onDisplayInfo(product)"
+        :to="`/products/${prop.category.id}/${encodeURIComponent(product.id)}`"
       >
         <div class="product-img">
           <img :alt="product.id" :src="getImageUrl(product.img)" />
@@ -20,18 +20,17 @@
             <b>{{ product.name }}</b>
           </p>
         </div>
-      </div>
+      </RouterLink>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { type ICategory, type IProduct } from '@/types/old/Data'
+import { type ICategory } from '@/types/old/Data'
 import { computed, onMounted } from 'vue'
 import { useProductData } from '@/composables/useProductData'
 
 const prop = defineProps<{ category: ICategory }>() // pure type annotation
-const emit = defineEmits<{ (e: 'display', product: IProduct): void }>()
 const { loadProducts, getProductsByType } = useProductData()
 const matchProducts = computed(() => getProductsByType(prop.category.id))
 
@@ -41,10 +40,6 @@ onMounted(async () => {
 
 function getImageUrl(name: string) {
   return new URL(`/src/assets/images/products/${name}.jpg`, import.meta.url).href
-}
-
-function onDisplayInfo(product: IProduct) {
-  emit('display', product)
 }
 </script>
 
@@ -66,7 +61,9 @@ function onDisplayInfo(product: IProduct) {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   .product {
-    // display: flex;
+    display: block;
+    color: inherit;
+    text-decoration: none;
     max-width: 70%;
     margin: 0.5rem 1rem;
     .product-img {

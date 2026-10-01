@@ -3,7 +3,7 @@ import { computed, onMounted, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import pageTitle from '@/components/PageTitleItem.vue'
 import sideBar from '@/components/sidebar/SideBarItem.vue'
-import { type ICategory, type IProduct } from '@/types/old/Data'
+import { type ICategory } from '@/types/old/Data'
 import { useProductData } from '@/composables/useProductData'
 
 const title: string = '產品介紹'
@@ -16,10 +16,6 @@ const routeCategoryId = computed(() => normalizeRouteParam(route.params.type))
 const category = computed<ICategory>(
   () => findCategoryById(routeCategoryId.value) ?? findCategoryById(defaultCategoryId) ?? fallbackCategory
 )
-
-function displayInfo(id: string) {
-  router.push(`/products/${category.value.id}/${encodeURIComponent(id)}`)
-}
 
 async function ensureValidCategory() {
   await loadCategories()
@@ -54,14 +50,7 @@ watch(
       ></side-bar>
     </aside>
     <main>
-      <RouterView
-        :category="category"
-        @display="
-          (info:IProduct) => {
-            displayInfo(info.id)
-          }
-        "
-      ></RouterView>
+      <RouterView :category="category"></RouterView>
     </main>
   </div>
 </template>
