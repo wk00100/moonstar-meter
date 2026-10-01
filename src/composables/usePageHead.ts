@@ -5,6 +5,21 @@ import { useHead } from '@unhead/vue'
 export const SITE_URL = 'https://moonstar-meter-tw.netlify.app'
 export const SITE_NAME = '月欣科技有限公司'
 
+// Netlify serves prerendered pages at lowercase URLs with a trailing slash and 301s everything
+// else there, so the canonical must be that final form. Keep in sync with
+// toSitemapPath() in scripts/generate-sitemap.mjs.
+function toCanonicalUrl(path: string): string {
+  let decoded = path
+  try {
+    decoded = decodeURI(path)
+  } catch {
+    // malformed escape sequence: fall back to the raw path
+  }
+  const url = new URL(decoded.toLowerCase(), SITE_URL)
+  if (!url.pathname.endsWith('/')) url.pathname += '/'
+  return url.href.replace(/%[0-9a-f]{2}/gi, (escape) => escape.toUpperCase())
+}
+
 interface PageHead {
   title: () => string | undefined
   description: () => string | undefined
@@ -15,8 +30,7 @@ interface PageHead {
 // beats its category page, which beats the route meta set in App.vue.
 export function usePageHead(page: PageHead) {
   const route = useRoute()
-  // new URL() percent-encodes non-ASCII ids, matching the URLs in sitemap.xml
-  const url = computed(() => new URL(route.path, SITE_URL).href)
+  const url = computed(() => toCanonicalUrl(route.path))
 
   useHead({
     title: page.title,

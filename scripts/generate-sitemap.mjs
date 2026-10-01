@@ -28,24 +28,32 @@ const productsData = JSON.parse(fs.readFileSync(productsPath, 'utf-8'))
 // Collect all URLs as a Set to deduplicate
 const urls = new Set()
 
-// Static pages
-urls.add('/')
-urls.add('/about')
-urls.add('/contact-us')
-urls.add('/products')
+// Netlify serves prerendered folders at lowercase URLs with a trailing slash
+// (/products/C -> /products/c/), so list those final URLs to avoid redirects in the sitemap.
+// Keep in sync with toCanonicalUrl() in src/composables/usePageHead.ts.
+function toSitemapPath(...segments) {
+  const encoded = segments.map((segment) => encodeURIComponent(segment.toLowerCase()))
+  return `/${encoded.join('/')}${encoded.length > 0 ? '/' : ''}`
+}
+
+// Static pages. /products is left out: it redirects to /products/AI and canonicalizes there.
+urls.add(toSitemapPath())
+urls.add(toSitemapPath('about'))
+urls.add(toSitemapPath('contact-us'))
 
 // Category pages (isActive is not used by the site, so every category is public)
-typesData.forEach(type => {
-  urls.add(`/products/${type.id}`)
+typesData.forEach((type) => {
+  urls.add(toSitemapPath('products', type.id))
 })
 
 // Product detail pages
-productsData.forEach(product => {
-  // Skip products whose category does not exist, since the router would redirect them
-  const productType = typesData.find(t => t.id === product.type)
-  if (productType) {
-    const encodedProductId = encodeURIComponent(product.id)
-    urls.add(`/products/${product.type}/${encodedProductId}`)
+productsData.forEach((product) => {
+  // Skip products whose category does not exist, since the router would redirect them.
+  // Also skip ids containing "/": vite.config.ts cannot prerender them, so crawlers
+  // would receive the home page HTML for that URL.
+  const productType = typesData.find((t) => t.id === product.type)
+  if (productType && !product.id.includes('/')) {
+    urls.add(toSitemapPath('products', product.type, product.id))
   }
 })
 
