@@ -86,6 +86,29 @@ watch(
   }
 )
 
+watch(
+  () => currentProduct.value,
+  (product) => {
+    if (product.id) {
+      // Set document title
+      document.title = `${product.id} ${product.name}｜月欣科技有限公司`
+
+      // Set meta description
+      const strippedDescription = product.description.replace(/<[^>]*>/g, '')
+      const metaContent = `${product.id} ${product.name}。${strippedDescription}`.substring(0, 120)
+
+      let metaDescriptionTag = document.querySelector('meta[name="description"]')
+      if (!metaDescriptionTag) {
+        metaDescriptionTag = document.createElement('meta')
+        metaDescriptionTag.setAttribute('name', 'description')
+        document.head.appendChild(metaDescriptionTag)
+      }
+      metaDescriptionTag.setAttribute('content', metaContent)
+    }
+  },
+  { immediate: true }
+)
+
 async function ensureProductExists() {
   await loadProducts()
 
