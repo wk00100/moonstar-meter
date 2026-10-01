@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://moonstar-meter-tw.netlify.app/sitemap.xml
