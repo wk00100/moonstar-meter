@@ -10,6 +10,8 @@ function readData<T>(fileName: string): T {
   return JSON.parse(readFileSync(file, 'utf-8'))
 }
 
+const NOT_FOUND_PATH = '/404'
+
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [vue()],
@@ -33,15 +35,20 @@ export default defineConfig({
       const products = readData<{ id: string; type: string }[]>('product_info.json')
 
       const categoryPaths = categories.map((category) => `/products/${category.id}`)
-      // An id containing "/" would become nested folders that the URL cannot map back to.
-      const productPaths = products
-        .filter((product) => !product.id.includes('/'))
-        .map((product) => `/products/${product.type}/${product.id}`)
+      // vite-ssg uses the route as the output path, so a raw "/" in an id would become nested
+      // folders. Keep it as %2F: the folder name then matches the link ProductList builds with
+      // encodeURIComponent, and vue-router still decodes the param back to the real id.
+      const productPaths = products.map(
+        (product) => `/products/${product.type}/${product.id.replaceAll('/', '%2F')}`
+      )
 
       // `paths` also holds the raw patterns (":type", catch-all "*"); keep concrete ones only.
       const staticPaths = paths.filter((path) => !/[:*]/.test(path))
 
-      return [...new Set([...staticPaths, ...categoryPaths, ...productPaths])]
-    }
+      // Any unknown path lands on the catch-all route; render it once for Netlify's 404 page.
+      return [...new Set([...staticPaths, ...categoryPaths, ...productPaths, NOT_FOUND_PATH])]
+    },
+    // Netlify only picks up a root-level 404.html, not the nested 404/index.html.
+    htmlFileName: (file) => (file === `${NOT_FOUND_PATH.slice(1)}/index.html` ? '404.html' : file)
   }
 })

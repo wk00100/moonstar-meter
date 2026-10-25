@@ -75,6 +75,8 @@ export const routes: RouteRecordRaw[] = [
   {
     // will match everything and put it under `$route.params.pathMatch`
     path: '/:pathMatch(.*)*',
-    redirect: '/'
+    name: 'not-found',
+    component: () => import('../views/NotFoundView.vue'),
+    meta: { title: '找不到頁面｜月欣科技有限公司' }
   }
 ]

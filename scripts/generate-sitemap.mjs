@@ -31,9 +31,11 @@ const urls = new Set()
 // Netlify serves prerendered folders at lowercase URLs with a trailing slash
 // (/products/C -> /products/c/), so list those final URLs to avoid redirects in the sitemap.
 // Keep in sync with toCanonicalUrl() in src/composables/usePageHead.ts.
+// Encode the way the canonical does (WHATWG URL path rules, e.g. "," stays as is); only "/"
+// inside a segment is escaped by hand so it is not read as a separator.
 function toSitemapPath(...segments) {
-  const encoded = segments.map((segment) => encodeURIComponent(segment.toLowerCase()))
-  return `/${encoded.join('/')}${encoded.length > 0 ? '/' : ''}`
+  const path = segments.map((segment) => segment.toLowerCase().replaceAll('/', '%2F')).join('/')
+  return new URL(`/${path}${segments.length > 0 ? '/' : ''}`, BASE_URL).pathname
 }
 
 // Static pages. /products is left out: it redirects to /products/AI and canonicalizes there.
@@ -49,10 +51,9 @@ typesData.forEach((type) => {
 // Product detail pages
 productsData.forEach((product) => {
   // Skip products whose category does not exist, since the router would redirect them.
-  // Also skip ids containing "/": vite.config.ts cannot prerender them, so crawlers
-  // would receive the home page HTML for that URL.
+  // An id containing "/" is encoded as %2F, matching the folder vite.config.ts prerenders.
   const productType = typesData.find((t) => t.id === product.type)
-  if (productType && !product.id.includes('/')) {
+  if (productType) {
     urls.add(toSitemapPath('products', product.type, product.id))
   }
 })
