@@ -10,6 +10,8 @@ function readData<T>(fileName: string): T {
   return JSON.parse(readFileSync(file, 'utf-8'))
 }
 
+const NOT_FOUND_PATH = '/404'
+
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [vue()],
@@ -41,7 +43,10 @@ export default defineConfig({
       // `paths` also holds the raw patterns (":type", catch-all "*"); keep concrete ones only.
       const staticPaths = paths.filter((path) => !/[:*]/.test(path))
 
-      return [...new Set([...staticPaths, ...categoryPaths, ...productPaths])]
-    }
+      // Any unknown path lands on the catch-all route; render it once for Netlify's 404 page.
+      return [...new Set([...staticPaths, ...categoryPaths, ...productPaths, NOT_FOUND_PATH])]
+    },
+    // Netlify only picks up a root-level 404.html, not the nested 404/index.html.
+    htmlFileName: (file) => (file === `${NOT_FOUND_PATH.slice(1)}/index.html` ? '404.html' : file)
   }
 })
