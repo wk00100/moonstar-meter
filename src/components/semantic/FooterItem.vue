@@ -7,14 +7,8 @@
           icon="fa-solid fa-location-dot"
           class="icon"
         />&ensp;新北市板橋區信義路163巷11號3樓<br />
-        <font-awesome-icon
-          icon="fa-solid fa-phone"
-          class="icon"
-        />&ensp;886-2-89541027 &nbsp;&nbsp;
-        <font-awesome-icon
-          icon="fa-solid fa-print"
-          class="icon"
-        />&ensp;886-2-89541028<br />
+        <font-awesome-icon icon="fa-solid fa-phone" class="icon" />&ensp;886-2-89541027 &nbsp;&nbsp;
+        <font-awesome-icon icon="fa-solid fa-print" class="icon" />&ensp;886-2-89541028<br />
         <font-awesome-icon icon="fa-solid fa-link" class="icon" />&ensp;<a
           href="http://www.moonstar-meter.com/"
           target="_blank"
@@ -34,7 +28,7 @@
 
 <style scoped lang="scss">
 $icon: '#ededed';
-font-awesome-icon{
+font-awesome-icon {
   color: $icon;
 }
 ul {

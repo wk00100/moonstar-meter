@@ -21,7 +21,10 @@ const {
 
 const routeCategoryId = computed(() => normalizeRouteParam(route.params.type))
 const category = computed<ICategory>(
-  () => findCategoryById(routeCategoryId.value) ?? findCategoryById(defaultCategoryId) ?? fallbackCategory
+  () =>
+    findCategoryById(routeCategoryId.value) ??
+    findCategoryById(defaultCategoryId) ??
+    fallbackCategory
 )
 
 // Category pages: the model numbers in the description are what product searches match on.

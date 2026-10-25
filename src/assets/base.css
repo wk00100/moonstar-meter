@@ -62,11 +62,27 @@ body {
   min-height: 100vh;
   color: var(--color-text);
   background: var(--color-background);
-  transition: color 0.5s, background-color 0.5s;
+  transition:
+    color 0.5s,
+    background-color 0.5s;
   line-height: 1.6;
-  font-family: 'Noto Sans TC', sans-serif, 'TaipeiSans-Regular', Inter, -apple-system,
-    BlinkMacSystemFont, 'Noto Sans TC', 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans',
-    'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-family:
+    'Noto Sans TC',
+    sans-serif,
+    'TaipeiSans-Regular',
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Noto Sans TC',
+    'Segoe UI',
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    'Fira Sans',
+    'Droid Sans',
+    'Helvetica Neue',
+    sans-serif;
   font-size: 15px;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;

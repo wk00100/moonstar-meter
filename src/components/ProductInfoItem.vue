@@ -63,12 +63,8 @@ const emptyProduct: IProductInfo = {
 }
 const route = useRoute()
 const router = useRouter()
-const {
-  defaultCategoryId,
-  loadProducts,
-  normalizeRouteParam,
-  findProductByIdAndType
-} = useProductData()
+const { defaultCategoryId, loadProducts, normalizeRouteParam, findProductByIdAndType } =
+  useProductData()
 const categoryId = computed(() => normalizeRouteParam(route.params.type))
 const productId = computed(() => normalizeRouteParam(route.params.productId))
 const currentProduct = computed<IProductInfo>(
