@@ -23,7 +23,7 @@
     "pinia": "^4.1.0",
     "vue": "^3.5.44",
     "vue-router": "^5.4.0",
-    "vue3-carousel": "^0.3.4"
+    "vue3-carousel": "^0.19.0"
   },
   "devDependencies": {
     "@tsconfig/node26": "^26.0.1",
