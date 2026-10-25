@@ -12,7 +12,7 @@
     "build-only": "node scripts/generate-sitemap.mjs && vite-ssg build",
     "type-check": "vue-tsc --noEmit -p tsconfig.app.json --composite false",
     "lint": "eslint .",
-    "format": "prettier --write ."
+    "format": "prettier --write src/"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
@@ -29,13 +29,13 @@
     "@tsconfig/node26": "^26.0.1",
     "@types/node": "^26.6.5",
     "@vitejs/plugin-vue": "^6.0.10",
-    "@vue/eslint-config-prettier": "^7.1.0",
+    "@vue/eslint-config-prettier": "^10.2.0",
     "@vue/eslint-config-typescript": "^14.9.0",
     "@vue/tsconfig": "^0.4.0",
     "eslint": "^10.13.0",
     "eslint-plugin-vue": "^10.11.1",
     "npm-run-all2": "^9.0.4",
-    "prettier": "^2.8.8",
+    "prettier": "^3.9.10",
     "sass": "^1.106.1",
     "typescript": "~6.0.3",
     "vite": "^8.3.5",
